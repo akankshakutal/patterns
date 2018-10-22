@@ -1,9 +1,91 @@
-const generatePattern = function (length,character) {
+const generatePattern = function (width,character) {
+  let rectangle = "";
+  for(let column=0; column<width; column++) {
+    rectangle = rectangle + character;
+  }
+  return rectangle;
+}
+
+const createFilledRect = function(width,height) {
+  let rectangle = "";
+  let delimeter = "";
+  for(let row=0; row<height; row++) {
+    rectangle += delimeter +  generatePattern(width,"*");
+    delimeter = "\n";
+  }
+  return rectangle;
+}
+
+const createEmptyRect = function (width,height) {
+  let rectangle = "";
+  let delimeter = "";
+  rectangle += delimeter + generatePattern(width,"*");
+  delimeter = "\n";
+  for(let row=1; row<height-1; row++) {
+    rectangle += delimeter + "*" + generatePattern(width-2," ") + "*";
+  }
+  rectangle += delimeter + generatePattern(width,"*") ;
+  return rectangle;
+}
+
+const createAlternateRect = function(width,height) {
+  let delimeter = "";
+  let rectangle = "";
+  for(let row=0; row<height; row++) {
+    symbol= "-";
+    if(row%2 == 0) {
+      symbol= "*";
+    } 
+   rectangle += delimeter + generatePattern(width,symbol) ;
+    delimeter = "\n";
+  }
+  return rectangle;
+}
+
+const generateRectangle = function(kindOfRectangle,width,height) {
+  let rectangle = "";
+  if(kindOfRectangle.toLowerCase()  == "filled") {
+    rectangle = createFilledRect(width,height);
+  }
+  if(kindOfRectangle.toLowerCase()  == "empty") {
+    rectangle = createEmptyRect(width,height);
+  }
+  if(kindOfRectangle.toLowerCase()  == "alternating") {
+    rectangle = createAlternateRect(width,height);
+  }
+  return rectangle;
+}
+
+const createLeftTriangle = function(height) {
   let line = "";
-  for(index=0; index<length; index++) {
-    line = line + character;
+  let delimeter = "";
+  for(row=0; row<height; row++) {
+    line += delimeter + generatePattern(row+1,"*");
+    delimeter = "\n"
   }
   return line;
+}
+
+const createRightTriangle = function (height) {
+  let line = "";
+  let delimeter = "";
+  for(let row=height; row>0; row--) {
+    line += delimeter + generatePattern(row-1," ");
+    line += generatePattern(height-row+1,"*");
+    delimeter = "\n";
+  }
+  return line;
+}
+
+const generateTriangle = function(triangleAlignment,height) {
+  let triangle  = ""; 
+  if(triangleAlignment.toLowerCase() == "left") {
+    triangle = createLeftTriangle(height);
+  }
+  if(triangleAlignment.toLowerCase() == "right") {
+    triangle = createRightTriangle(height);
+  }
+  return triangle;
 }
 
 const upperPartOfFilled = function (height) {
@@ -87,27 +169,23 @@ const createAngledDiamond = function(height) {
   return diamond;
 }
 
-
-const drawDiamond = function () {
-  let kindOfDiamond = process.argv[2];
-  let height = process.argv[3];
+const generateDiamond = function (kindOfDiamond,height) {
   let diamond  = ""; 
-
   if(height %2 == 0) {
     height--
   }
   if(kindOfDiamond.toLowerCase() == "filled"){
     diamond = createFilledDiamond(height);
   }
-
   if(kindOfDiamond.toLowerCase() == "hollow") {
     diamond = createHollowDiamond(height);
   }
-
   if(kindOfDiamond.toLowerCase() == "angled") {
     diamond=createAngledDiamond(height);
   }
-
-  console.log(diamond);
+    return diamond;
 }
-drawDiamond();
+
+exports.generateDiamond = generateDiamond;
+exports.generateTriangle = generateTriangle;
+exports.generateRectangle = generateRectangle;
