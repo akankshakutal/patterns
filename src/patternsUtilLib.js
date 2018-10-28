@@ -1,3 +1,10 @@
+exports.extractParameters = function(userArgs) { 
+  let type = userArgs[2];
+  let height = +userArgs[3];
+  let width = +userArgs[4];
+  return {type : type, height : height, width : width};
+}
+
 exports.repeatCharacter = function (character,times) {
   return new Array(times).fill(character).join("");
 }

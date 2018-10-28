@@ -18,7 +18,6 @@ const { repeatCharacter,
 let inputs = ["*",0];
 let actualOutput = repeatCharacter("*",0);
 let expectedOutput = "";
-console.log(repeatCharacter);
 assert.equal(actualOutput,expectedOutput);
 printLog(repeatCharacter,inputs,expectedOutput,actualOutput);
 

@@ -3,24 +3,24 @@ const { printLog } = require('../testFramework.js');
 const assert = require('assert');
 console.log("-------------------- Test Report ----------------------");
 
-let actualOutput = lib.generateRectangle("Filled",2,2); 
+let actualOutput = lib.generateRectangle({type : "Filled",height : 2, width : 2}); 
 let expectedOutput  = "**\n";
     expectedOutput += "**";
-let inputs = ["Filled",2,2];
+let inputs = {type : "Filled",height : 2, width : 2};
 assert.deepEqual(actualOutput,expectedOutput);
 printLog(lib.generateRectangle,inputs,expectedOutput,actualOutput);
 
-actualOutput = lib.generateRectangle("Filled",5,4);
+actualOutput = lib.generateRectangle({type : "Filled",height : 4, width : 5});
 expectedOutput  = "";
 expectedOutput  = "*****\n";
 expectedOutput += "*****\n";
 expectedOutput += "*****\n";
 expectedOutput += "*****";
-inputs = ["Filled",5,4];
+inputs = {type : "Filled",height : 4, width : 5};
 assert.deepEqual(actualOutput,expectedOutput);
 printLog(lib.generateRectangle,inputs,expectedOutput,actualOutput);
 
-actualOutput = lib.generateRectangle("Filled",5,7);
+actualOutput = lib.generateRectangle({type : "Filled",height : 7, width : 5});
 expectedOutput  = "";
 expectedOutput  = "*****\n";
 expectedOutput += "*****\n";
@@ -29,12 +29,12 @@ expectedOutput += "*****\n";
 expectedOutput += "*****\n";
 expectedOutput += "*****\n";
 expectedOutput += "*****";
-inputs = ["Filled",5,7];
+inputs = {type : "Filled",height : 7, width : 5};
 assert.deepEqual(actualOutput,expectedOutput);
 printLog(lib.generateRectangle,inputs,expectedOutput,actualOutput);
 
-actualOutput = lib.generateRectangle("Filled",20,7);
-expectedOutput = "";
+actualOutput = lib.generateRectangle({type : "Filled",height : 7,  width : 20});
+expectedOutput = ""; 
 expectedOutput  = "********************\n";
 expectedOutput += "********************\n";
 expectedOutput += "********************\n";
@@ -42,29 +42,29 @@ expectedOutput += "********************\n";
 expectedOutput += "********************\n";
 expectedOutput += "********************\n";
 expectedOutput += "********************";
-inputs = ["Filled",20,7]; 
+inputs = {type : "Filled",height : 7, width : 20}; 
 assert.deepEqual(actualOutput,expectedOutput);
 printLog(lib.generateRectangle,inputs,expectedOutput,actualOutput);
 
-actualOutput = lib.generateRectangle("Empty",2,2);
+actualOutput = lib.generateRectangle({type : "Empty",height : 2, width : 2});
 expectedOutput  = "**\n";
 expectedOutput += "**";
-inputs = ["Empty",2,2];
+inputs = {type : "Empty",height : 2, width : 2};
 assert.deepEqual(actualOutput,expectedOutput);
 printLog(lib.generateRectangle,inputs,expectedOutput,actualOutput);
 
-actualOutput = lib.generateRectangle("Empty",5,4);
+actualOutput = lib.generateRectangle({type : "Empty",height : 4, width : 5});
 expectedOutput  = "";
 expectedOutput  = "*****\n";
 expectedOutput += "*   *\n";
 expectedOutput += "*   *\n";
 expectedOutput += "*****";
-inputs = ["Empty",5,4];
+inputs = {type : "Empty",height : 4, width : 5};
 assert.deepEqual(actualOutput,expectedOutput);
 printLog(lib.generateRectangle,inputs,expectedOutput,actualOutput);
 
-actualOutput = lib.generateRectangle("Empty",5,7);
-inputs = ["Empty",5,7];
+actualOutput = lib.generateRectangle({type : "Empty",height : 7, width : 5});
+inputs = {type : "Empty",height : 7, width : 5};
 expectedOutput  = "";
 expectedOutput  = "*****\n";
 expectedOutput += "*   *\n";
@@ -76,7 +76,7 @@ expectedOutput += "*****";
 assert.deepEqual(actualOutput,expectedOutput);
 printLog(lib.generateRectangle,inputs,expectedOutput,actualOutput);
 
-actualOutput = lib.generateRectangle("Empty",20,7);
+actualOutput = lib.generateRectangle({type : "Empty",height : 7 , width : 20});
 expectedOutput = "";
 expectedOutput  = "********************\n";
 expectedOutput += "*                  *\n";
@@ -85,28 +85,28 @@ expectedOutput += "*                  *\n";
 expectedOutput += "*                  *\n";
 expectedOutput += "*                  *\n";
 expectedOutput += "********************";
-inputs = ["Empty",20,7];  
+inputs = {type : "Empty",height : 7, width : 20};  
 assert.deepEqual(actualOutput,expectedOutput);
 printLog(lib.generateRectangle,inputs,expectedOutput,actualOutput);
 
-actualOutput = lib.generateRectangle("alternating",2,2);
+actualOutput = lib.generateRectangle({type : "Alternating",height : 2, width : 2});
 expectedOutput  = "**\n";
 expectedOutput += "--";
-inputs = ["alternating",2,2];  
+inputs = {type : "Alternating",height : 2, width : 2};  
 assert.deepEqual(actualOutput,expectedOutput);
 printLog(lib.generateRectangle,inputs,expectedOutput,actualOutput);
 
-actualOutput = lib.generateRectangle("alternating",5,4);
+actualOutput = lib.generateRectangle({type : "Alternating",height : 4, width : 5});
 expectedOutput  = "";
 expectedOutput  = "*****\n";
 expectedOutput += "-----\n";
 expectedOutput += "*****\n";
 expectedOutput += "-----";
-inputs = ["alternating",5,4];  
+inputs = {type : "Alternating",height : 4, width : 5};  
 assert.deepEqual(actualOutput,expectedOutput);
 printLog(lib.generateRectangle,inputs,expectedOutput,actualOutput);
 
-actualOutput = lib.generateRectangle("alternating",5,7);
+actualOutput = lib.generateRectangle({type : "Alternating",height : 7, width : 5});
 expectedOutput  = "";
 expectedOutput  = "*****\n";
 expectedOutput += "-----\n";
@@ -115,12 +115,12 @@ expectedOutput += "-----\n";
 expectedOutput += "*****\n";
 expectedOutput += "-----\n";
 expectedOutput += "*****";
-inputs = ["alternating",5,7];  
+inputs = {type : "Alternating",height : 7, width : 5};  
 assert.deepEqual(actualOutput,expectedOutput);  
 assert.deepEqual(actualOutput,expectedOutput);
 printLog(lib.generateRectangle,inputs,expectedOutput,actualOutput);
 
-actualOutput = lib.generateRectangle("alternating",20,7);
+actualOutput = lib.generateRectangle({type : "Alternating",height : 7, width : 20});
 expectedOutput = "";
 expectedOutput  = "********************\n";
 expectedOutput += "--------------------\n";
@@ -129,27 +129,27 @@ expectedOutput += "--------------------\n";
 expectedOutput += "********************\n";
 expectedOutput += "--------------------\n";
 expectedOutput += "********************";
-inputs = ["alternating",20,7]; 
+inputs = {type : "Alternating",height : 7, width : 20};
 assert.deepEqual(actualOutput,expectedOutput);
 printLog(lib.generateRectangle,inputs,expectedOutput,actualOutput);
 /*-------------------------Test Triangle ------------------------------------*/
-actualOutput = lib.generateTriangle("Left",2);
+actualOutput = lib.generateTriangle({type : "Left", height : 2, width : 0});
 expectedOutput = "";
 expectedOutput =  "*\n";
 expectedOutput += "**"
-inputs = ["left",2];
+inputs = {type : "Left", height : 2, width : 0};
 printLog(lib.generateTriangle,inputs,expectedOutput,actualOutput);
 
-actualOutput = lib.generateTriangle("Left",3);
+actualOutput = lib.generateTriangle({type : "Left", height : 3, width : 0});
 expectedOutput = "";
 expectedOutput =  "*\n";
 expectedOutput += "**\n";
 expectedOutput += "***";
-inputs = ["left",3];  
+inputs = {type : "Filled",height : 3, width : 0};  
 assert.deepEqual(actualOutput,expectedOutput);
 printLog(lib.generateTriangle,inputs,expectedOutput,actualOutput);
 
-actualOutput = lib.generateTriangle("Left",6);
+actualOutput = lib.generateTriangle({type : "Left", height : 6, width : 0});
 expectedOutput = "";
 expectedOutput =  "*\n";
 expectedOutput += "**\n";
@@ -157,29 +157,29 @@ expectedOutput += "***\n";
 expectedOutput += "****\n";
 expectedOutput += "*****\n";
 expectedOutput += "******"
-inputs = ["left",6];  
+inputs = {type : "Left", height : 6, width : 0};  
 assert.deepEqual(actualOutput,expectedOutput);
 printLog(lib.generateTriangle,inputs,expectedOutput,actualOutput);
 
 
-actualOutput = lib.generateTriangle("Right",2);
+actualOutput = lib.generateTriangle({type : "Right", height : 2, width : 0});
 expectedOutput = "";
 expectedOutput =  " *\n";
 expectedOutput += "**"
-inputs = ["Right",2]; 
+inputs = {type : "Right", height : 2, width : 0}; 
 assert.deepEqual(actualOutput,expectedOutput);
 printLog(lib.generateTriangle,inputs,expectedOutput,actualOutput);
 
-actualOutput = lib.generateTriangle("Right",3);
+actualOutput = lib.generateTriangle({type : "Right", height : 3, width : 0});
 expectedOutput = "";
 expectedOutput =  "  *\n";
 expectedOutput += " **\n";
 expectedOutput += "***";
-inputs = ["Right",3];
+inputs = {type : "Right",height : 3, width : 0};
 assert.deepEqual(actualOutput,expectedOutput);
 printLog(lib.generateTriangle,inputs,expectedOutput,actualOutput);
 
-actualOutput = lib.generateTriangle("Right",6);
+actualOutput = lib.generateTriangle({type : "Right", height : 6, width : 0});
 expectedOutput = "";
 expectedOutput =  "     *\n";
 expectedOutput += "    **\n";
@@ -187,24 +187,24 @@ expectedOutput += "   ***\n";
 expectedOutput += "  ****\n";
 expectedOutput += " *****\n";
 expectedOutput += "******"
-inputs = ["Right",6]; 
+inputs = {type : "Right",height : 6, width : 0}; 
 assert.deepEqual(actualOutput,expectedOutput);
 printLog(lib.generateTriangle,inputs,expectedOutput,actualOutput);
 
 /*-------------------------- Test Diamond ----------------------------------*/
 
-actualOutput = lib.generateDiamond("Filled",5);
+actualOutput = lib.generateDiamond({type : "Filled" ,height : 5, width : 0});
 expectedOutput = "";
 expectedOutput  = "  *\n";
 expectedOutput += " ***\n";
 expectedOutput += "*****\n";
 expectedOutput += " ***\n";
 expectedOutput += "  *";
-inputs = ["Filled",5]; 
+inputs = {type : "Filled", height : 5, width : 0}; 
 assert.deepEqual(actualOutput,expectedOutput);
 printLog(lib.generateDiamond,inputs,expectedOutput,actualOutput);
 
-actualOutput = lib.generateDiamond("Filled",7);
+actualOutput = lib.generateDiamond({type : "Filled", height : 7, width : 0});
 expectedOutput = "";
 expectedOutput  = "   *\n";
 expectedOutput += "  ***\n";
@@ -213,11 +213,11 @@ expectedOutput += "*******\n";
 expectedOutput += " *****\n";
 expectedOutput += "  ***\n";
 expectedOutput += "   *";
-inputs = ["Filled",7];
+inputs = {type : "Filled", height : 7, width : 0};
 assert.deepEqual(actualOutput,expectedOutput);
 printLog(lib.generateDiamond,inputs,expectedOutput,actualOutput);
 
-actualOutput = lib.generateDiamond("Filled",10);
+actualOutput = lib.generateDiamond({type : "Filled", height : 10, width : 0});
 expectedOutput = "";
 expectedOutput  = "    *\n"
 expectedOutput += "   ***\n";
@@ -228,22 +228,22 @@ expectedOutput += " *******\n";
 expectedOutput += "  *****\n";
 expectedOutput += "   ***\n";
 expectedOutput += "    *";
-inputs = ["Filled",10]; 
+inputs = {type : "Filled", height : 10, width : 0}; 
 assert.deepEqual(actualOutput,expectedOutput);
 printLog(lib.generateDiamond,inputs,expectedOutput,actualOutput);
 
-actualOutput = lib.generateDiamond("Hollow",5);
+actualOutput = lib.generateDiamond({type : "Hollow", height : 5, width : 0});
 expectedOutput = "";
 expectedOutput  = "  *\n";
 expectedOutput += " * *\n";
 expectedOutput += "*   *\n";
 expectedOutput += " * *\n";
 expectedOutput += "  *";
-inputs = ["Hollow",5]; 
+inputs = {type : "Hollow", height : 5, width : 0}; 
 assert.deepEqual(actualOutput,expectedOutput);
 printLog(lib.generateDiamond,inputs,expectedOutput,actualOutput);
 
-actualOutput = lib.generateDiamond("Hollow",7);
+actualOutput = lib.generateDiamond({type : "Hollow", height : 7, width : 0});
 expectedOutput = "";
 expectedOutput  = "   *\n";
 expectedOutput += "  * *\n";
@@ -252,11 +252,11 @@ expectedOutput += "*     *\n";
 expectedOutput += " *   *\n";
 expectedOutput += "  * *\n";
 expectedOutput += "   *";
-inputs = ["Hollow",7];  
+inputs = {type : "Hollow", height : 7, width : 0};  
 assert.deepEqual(actualOutput,expectedOutput);
 printLog(lib.generateDiamond,inputs,expectedOutput,actualOutput);
 
-actualOutput = lib.generateDiamond("Hollow",10);
+actualOutput = lib.generateDiamond({type : "Hollow", height : 10, width : 0});
 expectedOutput = "";
 expectedOutput  = "    *\n"
 expectedOutput += "   * *\n";
@@ -267,22 +267,22 @@ expectedOutput += " *     *\n";
 expectedOutput += "  *   *\n";
 expectedOutput += "   * *\n";
 expectedOutput += "    *";
-inputs = ["Hollow",10];
+inputs = {type : "Hollow", height : 10, width : 0};
 assert.deepEqual(actualOutput,expectedOutput);
 printLog(lib.generateDiamond,inputs,expectedOutput,actualOutput);
 
-actualOutput = lib.generateDiamond("Angled",5);
+actualOutput = lib.generateDiamond({type : "Angled", height : 5, width : 0});
 expectedOutput = "";
 expectedOutput  = "  *\n";
 expectedOutput += " / \\\n";
 expectedOutput += "*   *\n";
 expectedOutput += " \\ /\n";
 expectedOutput += "  *";
-inputs = ["Angled",5];
+inputs = {type : "Angled", height : 5, width : 0};
 assert.deepEqual(actualOutput,expectedOutput);
 printLog(lib.generateDiamond,inputs,expectedOutput,actualOutput);
 
-actualOutput = lib.generateDiamond("Angled",7);
+actualOutput = lib.generateDiamond({type : "Angled", height : 7, width : 0});
 expectedOutput = "";
 expectedOutput  = "   *\n";
 expectedOutput += "  / \\\n";
@@ -291,11 +291,11 @@ expectedOutput += "*     *\n";
 expectedOutput += " \\   /\n";
 expectedOutput += "  \\ /\n";
 expectedOutput += "   *";
-inputs = ["Angled",7];  
+inputs = {type : "Angled", height : 7, width : 0};  
 assert.deepEqual(actualOutput,expectedOutput);
 printLog(lib.generateDiamond,inputs,expectedOutput,actualOutput);
 
-actualOutput = lib.generateDiamond("Angled",10);
+actualOutput = lib.generateDiamond({type : "Angled", height : 10, width : 0});
 expectedOutput = "";
 expectedOutput  = "    *\n"
 expectedOutput += "   / \\\n";
@@ -306,7 +306,7 @@ expectedOutput += " \\     /\n";
 expectedOutput += "  \\   /\n";
 expectedOutput += "   \\ /\n";
 expectedOutput += "    *";
-inputs = ["Angled",10]; 
+inputs = {type : "Angled", height : 10, width : 0}; 
 assert.deepEqual(actualOutput,expectedOutput);
 printLog(lib.generateDiamond,inputs,expectedOutput,actualOutput);
 

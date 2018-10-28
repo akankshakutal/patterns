@@ -7,44 +7,44 @@ const {createFilledRect,
        createHollowDiamond,
        createAngledDiamond } = require('./patternsUtilLib.js');
 
-const generateRectangle = function(kindOfRectangle,width,height) {
+const generateRectangle = function(parameters) {
   let rectangle = "";
-  if(kindOfRectangle.toLowerCase()  == "filled") {
-    rectangle = createFilledRect(width,height);
+  if(parameters.type.toLowerCase()  == "filled") {
+    rectangle = createFilledRect(parameters.width,parameters.height);
   }
-  if(kindOfRectangle.toLowerCase()  == "empty") {
-    rectangle = createEmptyRect(width,height);
+  if(parameters.type.toLowerCase()   == "empty") {
+    rectangle = createEmptyRect(parameters.width,parameters.height);
   }
-  if(kindOfRectangle.toLowerCase()  == "alternating") {
-    rectangle = createAlternateRect(width,height);
+  if(parameters.type.toLowerCase()   == "alternating") {
+    rectangle = createAlternateRect(parameters.width,parameters.height);
   }
   return rectangle;
 }
 
-const generateTriangle = function(triangleAlignment,height) {
+const generateTriangle = function(parameters) {
   let triangle  = ""; 
-  if(triangleAlignment.toLowerCase() == "left") {
-    triangle = createLeftTriangle(height);
+  if(parameters.type.toLowerCase()  == "left") {
+    triangle = createLeftTriangle(parameters.height);
   }
-  if(triangleAlignment.toLowerCase() == "right") {
-    triangle = createRightTriangle(height);
+  if(parameters.type.toLowerCase()  == "right") {
+    triangle = createRightTriangle(parameters.height);
   }
   return triangle;
 }
 
-const generateDiamond = function (kindOfDiamond,height) {
+const generateDiamond = function (parameters) {
   let diamond  = ""; 
-  if(height %2 == 0) {
-    height--
+  if(parameters.height %2 == 0) {
+    parameters.height --;
   }
-  if(kindOfDiamond.toLowerCase() == "filled"){
-    diamond = createFilledDiamond(height);
+  if(parameters.type.toLowerCase()  == "filled"){
+    diamond = createFilledDiamond(parameters.height);
   }
-  if(kindOfDiamond.toLowerCase() == "hollow") {
-    diamond = createHollowDiamond(height);
+  if(parameters.type.toLowerCase()  == "hollow") {
+    diamond = createHollowDiamond(parameters.height);
   }
-  if(kindOfDiamond.toLowerCase() == "angled") {
-    diamond=createAngledDiamond(height);
+  if(parameters.type.toLowerCase()  == "angled") {
+    diamond=createAngledDiamond(parameters.height);
   }
     return diamond;
 }
