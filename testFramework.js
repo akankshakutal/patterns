@@ -1,4 +1,5 @@
 const { zipArrays } = require('../arrayAssignment/lib/zipArrays.js');
+
 const justify = function(text) { 
   let noOfSpaces = 25 - text.length;
   let spaces = new Array(noOfSpaces).fill(" ").join("");
