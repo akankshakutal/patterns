@@ -1,15 +1,42 @@
-exports.extractParameters = function(userArgs) { 
+const extractParameters = function (userArgs) { 
   let type = userArgs[2];
   let height = +userArgs[3];
   let width = +userArgs[4];
   return {type : type, height : height, width : width};
 }
+exports.extractParameters = extractParameters;
 
-exports.repeatCharacter = function (character,times) {
-  return new Array(times).fill(character).join("");
+const repeatCharacter = function (character,times) {
+  let line = '';
+  for (let count = 0; count < times; count++) {
+    line = line + character;
+  }
+  return line;
 }
+exports.repeatCharacter = repeatCharacter;
 
-exports. generateLine = function(leftChar,middleChar,rightChar,width) { 
+const rightJustifyLine = function(text, width) {
+  let numberOfSpaces = width - text.length;
+  let spaces = repeatCharacter(' ', numberOfSpaces);
+  return spaces + text;
+}
+exports.rightJustifyLine = rightJustifyLine;
+
+const centerJustifyLine = function(text, width) {
+  let numberOfSpaces = (width - text.length) / 2;
+  let spaces = repeatCharacter(' ', numberOfSpaces);
+  return spaces + text + spaces;
+}
+exports.centerJustifyLine = centerJustifyLine;
+
+const leftJustifyLine = function(text, width) {
+  let numberOfSpaces = (width - text.length);
+  let spaces = repeatCharacter(' ', numberOfSpaces);
+  return text + spaces;
+}
+exports.leftJustifyLine = leftJustifyLine;
+
+const createLine = function(leftChar,middleChar,rightChar,width) { 
   let leftBorderWidth = 1 % (width + 1);
   let rightBorderWidth = 1 % width;
   let line = [];
@@ -18,130 +45,135 @@ exports. generateLine = function(leftChar,middleChar,rightChar,width) {
   line[2] = repeatCharacter(rightChar, rightBorderWidth);
   return line.join("");
 }
+exports.createLine = createLine;
 
-exports.createFilledRect = function(width,height) {
-  let rectangle = "";
-  let delimeter = "";
-  for(let row=0; row<height; row++) {
-    rectangle += delimeter +  exports.repeatCharacter("*",width);
-    delimeter = "\n";
+const createLineGenerator = function(leftChar, middleChar, rightChar) {
+  return function (width) {
+    return createLine(leftChar, middleChar, rightChar,width);
   }
-  return rectangle;
 }
+exports.createLineGenerator = createLineGenerator;
 
-exports.createEmptyRect = function (width,height) {
-  let rectangle = [];
-  rectangle[0] = exports.repeatCharacter("*",width);
-  for(let row = 1; row < height-1; row++){
-    rectangle[row] = "*" + exports.repeatCharacter(" ",width-2) + "*";
-  }
-  rectangle[height-1] = exports.repeatCharacter("*",width);
+const starLineGenerator = createLineGenerator("*","*","*");
+const dashLineGenerator = createLineGenerator("-","-","-");
+const hollowLineGenerator = createLineGenerator("*"," ","*");
+const upperAngledLineGenerator = createLineGenerator("/"," ","\\");
+const lowerAngledLineGenerator = createLineGenerator("\\"," ","/");
+exports.starLineGenerator = starLineGenerator;
+exports.dashLineGenerator = dashLineGenerator;
+exports.hollowLineGenerator = hollowLineGenerator;
+exports.upperAngledLineGenerator = upperAngledLineGenerator;
+exports.lowerAngledLineGenerator = lowerAngledLineGenerator;
+
+const createFilledRect = function (width,height) {
+  let rectangle = new Array(height).fill(starLineGenerator(width));
   return rectangle.join("\n");
 }
+exports.createFilledRect = createFilledRect;
 
-exports.createAlternateRect = function(width,height) {
-  let delimeter = "";
-  let rectangle = "";
+const createEmptyRect = function (width,height) {
+  let rectangle = [];
+  rectangle[0] = starLineGenerator(width);
+  for(let row = 1; row < height-1; row++){
+    rectangle[row] = hollowLineGenerator(width);
+  }
+  rectangle[height-1] = starLineGenerator(width);
+  return rectangle.join("\n");
+}
+exports.createEmptyRect = createEmptyRect;
+
+const createAlternateRect = function(width,height) {
+  let rectangle = [];
   for(let row=0; row<height; row++) {
-    symbol= "-";
-    if(row%2 == 0) {
-      symbol= "*";
-    } 
-    rectangle += delimeter + exports.repeatCharacter(symbol,width) ;
-    delimeter = "\n";
+    rectangle[row] = starLineGenerator(width);
+    if(row % 2 != 0) {
+      rectangle[row] = dashLineGenerator(width);
+    }
   }
-  return rectangle;
+  return rectangle.join("\n");
 }
+exports.createAlternateRect = createAlternateRect;
 
-
-exports.createLeftTriangle = function(height) {
-  let line = "";
-  let delimeter = "";
+const createTriangle = function(height,justifier,lineGenerator) {
+  let triangle = [];
   for(row=0; row<height; row++) {
-    line += delimeter + exports.repeatCharacter("*",row+1);
-    delimeter = "\n"
+    triangle[row] = lineGenerator(row+1);
+    let line = triangle[row];
+    triangle[row] = justifier(line,height);
   }
-  return line;
+  return triangle.join("\n");
 }
+exports.createTriangle = createTriangle;
 
-exports.createRightTriangle = function (height) {
-  let line = "";
-  let delimeter = "";
-  for(let row=height; row>0; row--) {
-    line += delimeter + exports.repeatCharacter(" ",row-1);
-    line += exports.repeatCharacter("*",height-row+1);
-    delimeter = "\n";
+const createLeftTriangle = function (height) {
+  return createTriangle(height,leftJustifyLine,starLineGenerator);
+}
+exports.createLeftTriangle = createLeftTriangle;
+
+const createRightTriangle = function (height) {
+  return createTriangle(height,rightJustifyLine,starLineGenerator);
+}
+exports.createRightTriangle = createRightTriangle;
+
+const generateUpperPartOfDiamond = function (height,lineGenerator) {
+  let upperPart = [];
+  for (let rowLength=1; rowLength<height; rowLength+=2) {
+    upperPart.push(centerJustifyLine(lineGenerator(rowLength),height));
   }
-  return line;
+  return upperPart.join("\n");
 }
+exports.generateUpperPartOfDiamond = generateUpperPartOfDiamond;
 
-exports.createFilledDiamond = function(height){
+const generateLowerPartOfDiamond = function(height,lineGenerator) {
+  let lowerPart = [];
+   for (let rowLength=height; rowLength>=1; rowLength-=2) {
+    lowerPart.push(centerJustifyLine(lineGenerator(rowLength),height));
+  }
+  return lowerPart.join("\n");
+}
+exports.generateLowerPartOfDiamond = generateLowerPartOfDiamond;
+
+const createFilledDiamond = function(height) {
   let diamond = [];
-  let spaces = 1;
-  for(let row = 0; row < height; row++) {
-    let numOfSpacesNeeded = Math.abs((height - spaces)/2);
-    let numOfStarNeeded = (height - (numOfSpacesNeeded*2));
-    diamond[row] = exports.repeatCharacter(" ",numOfSpacesNeeded);
-    diamond[row] += exports.repeatCharacter("*",numOfStarNeeded);
-    spaces += 2;
-  }
+  diamond[0] = generateUpperPartOfDiamond(height,starLineGenerator);
+  diamond[0] = diamond[0] + "\n" + generateLowerPartOfDiamond(height,starLineGenerator);
   return diamond.join("\n");
 }
+exports.createFilledDiamond = createFilledDiamond;
 
-exports.upperPartOfHollow =function (height) {
-  let line = "";
-  let delimeter = "";
-  let symbol = " ";
-  let row = Math.floor(height/2);
-  line += delimeter + exports.repeatCharacter(" ",row) + "*";
-  for(let row=Math.ceil(height/2)-1; row>0; row--) {
-    delimeter = "\n";
-    line += delimeter + exports.repeatCharacter(" ",row-1) +"*"+ symbol+"*";
-    symbol+= "  ";
-  }
-  return line;
+const createHollowDiamond = function(height) {
+  let diamond = [];
+  diamond[0] = generateUpperPartOfDiamond(height,hollowLineGenerator);
+  diamond[0] = diamond[0] + "\n" + generateLowerPartOfDiamond(height,hollowLineGenerator);
+  return diamond.join("\n");
 }
+exports.createHollowDiamond = createHollowDiamond;
 
-exports.createHollowDiamond = function(height) {
-  let delimeter = "\n";
-  let line = exports.upperPartOfHollow(height);
-  let len = height - 2;
-  for(let row=1; row<Math.ceil(height/2)-1; row++) {
-    len -= 2;
-    line += delimeter + exports.repeatCharacter(" ",row)+"*"+exports.repeatCharacter(" ",len)+"*";
+const generateUpperPartOfAngledDiamond = function (height,lineGenerator) {
+  let upperPart = [];
+  for (let rowLength=3; rowLength<height-1; rowLength+=2) {
+    upperPart.push(centerJustifyLine(lineGenerator(rowLength),height));
   }
-  line += delimeter + exports.repeatCharacter(" ",Math.floor(height/2)) + "*";
-  let diamond = line;
-  return diamond;
+  return upperPart.join("\n");
 }
+exports.generateUpperPartOfAngledDiamond = generateUpperPartOfAngledDiamond;
 
-exports.upperPartOfAngled = function (height) {
-  let line = "";
-  let delimeter = "";
-  let symbol = " ";
-  let row = Math.floor(height/2);
-  line += delimeter + exports.repeatCharacter(" ",row) + "*";
-  delimeter = "\n";
-  for(let row=(Math.floor(height/2))-1; row>0; row--) {
-    line += delimeter + exports.repeatCharacter(" ",row) +"/"+ symbol+"\\";
-    symbol += "  ";
+const generateLowerPartOfAngledDiamond = function(height,lineGenerator) {
+  let lowerPart = [];
+   for (let rowLength=height-2; rowLength>1; rowLength-=2) {
+    lowerPart.push(centerJustifyLine(lineGenerator(rowLength),height));
   }
-  if(height>1) {
-  line += delimeter + exports.repeatCharacter(" ",0) +"*"+ symbol+"*";
-  }
-  return line;
+  return lowerPart.join("\n");
 }
+exports.generateLowerPartOfAngledDiamond = generateLowerPartOfAngledDiamond;
 
-exports.createAngledDiamond = function(height) {
-  let line = exports.upperPartOfAngled(height);
-  let delimeter = "\n";
-  let len = height-2;
-  for(let row=1; row<(height/2)-1; row++) {
-    len -= 2;
-    line += delimeter + exports.repeatCharacter(" ",row)+"\\"+exports.repeatCharacter(" ",len)+"/";
-  }
-  line += delimeter + exports.repeatCharacter(" ",Math.floor(height/2)) + "*";
-  let diamond = line;
-  return diamond;
+const createAngledDiamond = function(height){
+  let diamond = [];
+  diamond[0] = centerJustifyLine("*",height);
+  diamond[0] = diamond[0] + "\n" + generateUpperPartOfAngledDiamond(height,upperAngledLineGenerator);
+  diamond[0] = diamond[0] + "\n" + hollowLineGenerator(height);
+  diamond[0] = diamond[0] + "\n" + generateLowerPartOfAngledDiamond(height,lowerAngledLineGenerator);
+  diamond[0] = diamond[0] + "\n" + centerJustifyLine("*",height);
+  return diamond.join("\n");
 }
-
+exports.createAngledDiamond = createAngledDiamond;
