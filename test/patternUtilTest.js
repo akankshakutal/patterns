@@ -1,7 +1,7 @@
 const assert = require("assert");
 const { printLog } = require("../testFramework.js");
-const { extractParameters,
-  repeat,
+const { extractParameters } = require("../parser.js");
+const { repeat,
   rightJustifyLine,
   leftJustifyLine,
   centerJustifyLine,

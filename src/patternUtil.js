@@ -160,7 +160,6 @@ const createAngledDiamond = function(height){
   return diamond;
 }
 
-exports.extractParameters = extractParameters;
 exports.generateLowerPartOfAngledDiamond = generateLowerPartOfAngledDiamond;
 exports.lineSeperator = lineSeperator;
 exports.createAngledDiamond = createAngledDiamond;
