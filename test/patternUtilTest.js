@@ -1,7 +1,7 @@
 const assert = require("assert");
 const { printLog } = require("../testFramework.js");
 const { extractParameters,
-  repeatCharacter,
+  repeat,
   rightJustifyLine,
   leftJustifyLine,
   centerJustifyLine,
@@ -23,7 +23,7 @@ const { extractParameters,
   generateLowerPartOfAngledDiamond,
   createFilledDiamond,
   createHollowDiamond,
-  createAngledDiamond } = require('../src/patternsUtilLib.js');
+  createAngledDiamond } = require('../src/patternUtil.js');
 
 /*------------------ ExtractParameters function tests --------------*/
 
@@ -34,15 +34,15 @@ const testExtractParameters = function(inputs,expectedOutput) {
 
 let inputs,expectedOutput;
 
-inputs = [,,"Filled",5,6];
+inputs = ["Filled",5,6];
 expectedOutput = {type : "Filled" , height : 5 , width : 6};
 testExtractParameters(inputs,expectedOutput);
 
-inputs = [,,"Empty",9,-3];
+inputs = ["Empty",9,-3];
 expectedOutput = {type : "Empty" , height : 9 , width : -3};
 testExtractParameters(inputs,expectedOutput);
 
-inputs = [,,"Empty",9,-3];
+inputs = ["Empty",9,-3];
 expectedOutput = {type : "Empty" , height : 9 , width : -3};
 testExtractParameters(inputs,expectedOutput);
 
@@ -56,20 +56,20 @@ const testFunction = function(functionName,inputs,expectedOutput) {
 
 inputs = ["*",0];
 expectedOutput = "";
-testFunction(repeatCharacter,inputs,expectedOutput);
+testFunction(repeat,inputs,expectedOutput);
 
 inputs = ["-",1];
 expectedOutput = "";
 expectedOutput = "-";
-testFunction(repeatCharacter,inputs,expectedOutput);
+testFunction(repeat,inputs,expectedOutput);
 
 inputs = ["#",5];
 expectedOutput = "#####";
-testFunction(repeatCharacter,inputs,expectedOutput);
+testFunction(repeat,inputs,expectedOutput);
 
 inputs = ["*",2];
 expectedOutput = "**";
-testFunction(repeatCharacter,inputs,expectedOutput);
+testFunction(repeat,inputs,expectedOutput);
 
 /*------------------ RightJustifyLine function tests --------------*/
 

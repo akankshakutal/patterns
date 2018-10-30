@@ -1,108 +1,90 @@
 const extractParameters = function (userArgs) { 
-  parameters = userArgs.slice(2);
-  let type = parameters[0];
-  let height = +parameters[1];
-  let width = +parameters[2];
-  return {type : type, height : height, width : width};
+  let parameters = {};
+  parameters.type = userArgs[0];
+  parameters.height = +userArgs[1];
+  parameters.width = +userArgs[2];
+  return parameters;
 }
-exports.extractParameters = extractParameters;
 
-const convertToString = function(list) { 
+const lineSeperator = function(list) { 
   let result = list.join("\n");
   return result;
 }
-exports.convertToString = convertToString;
 
-const repeatCharacter = function (character,times) {
+const repeat = function (character,times) {
   let line = "";
   for (let count = 0; count < times; count++) {
     line = line + character;
   }
   return line;
 }
-exports.repeatCharacter = repeatCharacter;
 
 const rightJustifyLine = function(text, width) {
   let numberOfSpaces = width - text.length;
-  let spaces = repeatCharacter(' ', numberOfSpaces);
+  let spaces = repeat(' ', numberOfSpaces);
   return spaces + text;
 }
-exports.rightJustifyLine = rightJustifyLine;
 
 const centerJustifyLine = function(text, width) {
   let numberOfSpaces = (width - text.length) / 2;
-  let spaces = repeatCharacter(' ', numberOfSpaces);
+  let spaces = repeat(' ', numberOfSpaces);
   return spaces + text + spaces;
 }
-exports.centerJustifyLine = centerJustifyLine;
 
 const leftJustifyLine = function(text, width) {
   let numberOfSpaces = (width - text.length);
-  let spaces = repeatCharacter(' ', numberOfSpaces);
+  let spaces = repeat(' ', numberOfSpaces);
   return text + spaces;
 }
-exports.leftJustifyLine = leftJustifyLine;
 
 const createLine = function(leftChar,middleChar,rightChar,width) { 
   let leftBorderWidth = 1 % (width + 1);
   let rightBorderWidth = 1 % width;
-  let line  = repeatCharacter(leftChar, leftBorderWidth);
-  line += repeatCharacter(middleChar, width - 2);
-  line += repeatCharacter(rightChar, rightBorderWidth);
+  let line  = repeat(leftChar, leftBorderWidth);
+  line += repeat(middleChar, width - 2);
+  line += repeat(rightChar, rightBorderWidth);
   return line;
 }
-exports.createLine = createLine;
 
 const createLineGenerator = function(leftChar, middleChar, rightChar) {
   return function (width) {
     return createLine(leftChar, middleChar, rightChar,width);
   }
 }
-exports.createLineGenerator = createLineGenerator;
 
 const starLineGenerator = createLineGenerator("*","*","*");
 const dashLineGenerator = createLineGenerator("-","-","-");
 const hollowLineGenerator = createLineGenerator("*"," ","*");
 const upperAngledLineGenerator = createLineGenerator("/"," ","\\");
 const lowerAngledLineGenerator = createLineGenerator("\\"," ","/");
-exports.starLineGenerator = starLineGenerator;
-exports.dashLineGenerator = dashLineGenerator;
-exports.hollowLineGenerator = hollowLineGenerator;
-exports.upperAngledLineGenerator = upperAngledLineGenerator;
-exports.lowerAngledLineGenerator = lowerAngledLineGenerator;
 
 const createFilledRect = function (width,height) {
   let rectangle = new Array(height).fill(starLineGenerator(width));
   return rectangle;
 }
-exports.createFilledRect = createFilledRect;
 
 const createEmptyRect = function (width,height) {
   let rectangle = [];
-  if(width > 0 && height > 0) {
-    rectangle.push(starLineGenerator(width));
-    for(let row = 1; row < height-1; row++){
-      rectangle.push(hollowLineGenerator(width));
-    }
-    rectangle.push(starLineGenerator(width));
+  let isZero = !(width > 0 && height > 0)
+  if(isZero) {
     return rectangle;
   }
-  return rectangle;
+  rectangle.push(starLineGenerator(width));
+  for(let row = 1; row < height-1; row++) {
+    rectangle.push(hollowLineGenerator(width));
+  }
+    rectangle.push(starLineGenerator(width));
+    return rectangle;
 }
-exports.createEmptyRect = createEmptyRect;
 
-const createAlternateRect = function(width,height) {
-  let rectangle = [];
+  const createAlternateRect = function(width,height) {
+    let rectangle = [];
+  let lineGenerators = [starLineGenerator,dashLineGenerator];
   for(let row=0; row<height; row++) {
-    let line = starLineGenerator(width)
-    if(row%2 != 0) {
-      line = dashLineGenerator(width);
-    }
-    rectangle.push(line);
+    rectangle.push(lineGenerators[row%2](width));
   }
   return rectangle;
 }
-exports.createAlternateRect = createAlternateRect;
 
 const createTriangle = function(height,justifier,lineGenerator) {
   let triangle = [];
@@ -112,17 +94,14 @@ const createTriangle = function(height,justifier,lineGenerator) {
   }
   return triangle;
 }
-exports.createTriangle = createTriangle;
 
 const createLeftTriangle = function (height) {
   return createTriangle(height,leftJustifyLine,starLineGenerator);
 }
-exports.createLeftTriangle = createLeftTriangle;
 
 const createRightTriangle = function (height) {
   return createTriangle(height,rightJustifyLine,starLineGenerator);
 }
-exports.createRightTriangle = createRightTriangle;
 
 const generateUpperPartOfDiamond = function (height,lineGenerator) {
   let upperPart = [];
@@ -131,7 +110,6 @@ const generateUpperPartOfDiamond = function (height,lineGenerator) {
   }
   return upperPart;
 }
-exports.generateUpperPartOfDiamond = generateUpperPartOfDiamond;
 
 const generateLowerPartOfDiamond = function(height,lineGenerator) {
   let lowerPart = [];
@@ -140,7 +118,6 @@ const generateLowerPartOfDiamond = function(height,lineGenerator) {
   }
   return lowerPart;
 }
-exports.generateLowerPartOfDiamond = generateLowerPartOfDiamond;
 
 const createFilledDiamond = function(height) {
   let diamond = [];
@@ -149,7 +126,6 @@ const createFilledDiamond = function(height) {
 
   return diamond;
 }
-exports.createFilledDiamond = createFilledDiamond;
 
 const createHollowDiamond = function(height) {
   let diamond = [];
@@ -157,7 +133,6 @@ const createHollowDiamond = function(height) {
   diamond = diamond.concat(generateLowerPartOfDiamond(height,hollowLineGenerator));
   return diamond;
 }
-exports.createHollowDiamond = createHollowDiamond;
 
 const generateUpperPartOfAngledDiamond = function (height,lineGenerator) {
   let upperPart = [];
@@ -166,7 +141,6 @@ const generateUpperPartOfAngledDiamond = function (height,lineGenerator) {
   }
   return upperPart;
 }
-exports.generateUpperPartOfAngledDiamond = generateUpperPartOfAngledDiamond;
 
 const generateLowerPartOfAngledDiamond = function(height,lineGenerator) {
   let lowerPart = [];
@@ -175,8 +149,6 @@ const generateLowerPartOfAngledDiamond = function(height,lineGenerator) {
   }
   return lowerPart;
 }
-exports.generateLowerPartOfAngledDiamond = generateLowerPartOfAngledDiamond;
-
 
 const createAngledDiamond = function(height){
   let diamond = [];
@@ -187,4 +159,30 @@ const createAngledDiamond = function(height){
   diamond = diamond.concat(centerJustifyLine("*",height));
   return diamond;
 }
+
+exports.extractParameters = extractParameters;
+exports.generateLowerPartOfAngledDiamond = generateLowerPartOfAngledDiamond;
+exports.lineSeperator = lineSeperator;
 exports.createAngledDiamond = createAngledDiamond;
+exports.repeat = repeat;
+exports.generateUpperPartOfAngledDiamond = generateUpperPartOfAngledDiamond;
+exports.createHollowDiamond = createHollowDiamond;
+exports.createFilledDiamond = createFilledDiamond;
+exports.generateLowerPartOfDiamond = generateLowerPartOfDiamond;
+exports.generateUpperPartOfDiamond = generateUpperPartOfDiamond;
+exports.createRightTriangle = createRightTriangle;
+exports.createLeftTriangle = createLeftTriangle;
+exports.createTriangle = createTriangle;
+exports.createEmptyRect = createEmptyRect;
+exports.createAlternateRect = createAlternateRect;
+exports.createFilledRect = createFilledRect;
+exports.createLineGenerator = createLineGenerator;
+exports.rightJustifyLine = rightJustifyLine;
+exports.centerJustifyLine = centerJustifyLine;
+exports.leftJustifyLine = leftJustifyLine;
+exports.createLine = createLine;
+exports.starLineGenerator = starLineGenerator;
+exports.dashLineGenerator = dashLineGenerator;
+exports.hollowLineGenerator = hollowLineGenerator;
+exports.upperAngledLineGenerator = upperAngledLineGenerator;
+exports.lowerAngledLineGenerator = lowerAngledLineGenerator;

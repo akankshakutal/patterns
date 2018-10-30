@@ -10,7 +10,7 @@ const testGenerateRectangle = function(inputs,expectedOutput) {
 }
 
 let expectedOutput  = ["**","**"];
-let inputs = {type : "Filled",height : 2, width : 2};
+let inputs = {type : "filled",height : 2, width : 2};
 testGenerateRectangle(inputs,expectedOutput);
 
 expectedOutput  = [];
@@ -18,7 +18,7 @@ expectedOutput.push("*****");
 expectedOutput.push("*****");
 expectedOutput.push("*****");
 expectedOutput.push("*****");
-inputs = {type : "Filled",height : 4, width : 5};
+inputs = {type : "filled",height : 5, width : 4};
 testGenerateRectangle(inputs,expectedOutput);
 
 expectedOutput  = [];
@@ -29,7 +29,7 @@ expectedOutput.push("*****");
 expectedOutput.push("*****");
 expectedOutput.push("*****");
 expectedOutput.push("*****");
-inputs = {type : "Filled",height : 7, width : 5};
+inputs = {type : "filled",height : 5, width : 7};
 testGenerateRectangle(inputs,expectedOutput);
 
 expectedOutput = []; 
@@ -40,13 +40,13 @@ expectedOutput.push("********************");
 expectedOutput.push("********************");
 expectedOutput.push("********************");
 expectedOutput.push("********************");
-inputs = {type : "Filled",height : 7, width : 20}; 
+inputs = {type : "filled",height :20, width : 7 }; 
 testGenerateRectangle(inputs,expectedOutput);
 
 expectedOutput = [];
 expectedOutput.push("**");
 expectedOutput.push("**");
-inputs = {type : "Empty",height : 2, width : 2};
+inputs = {type : "empty",height : 2, width : 2};
 testGenerateRectangle(inputs,expectedOutput);
 
 expectedOutput  = [];
@@ -54,7 +54,7 @@ expectedOutput.push("*****");
 expectedOutput.push("*   *");
 expectedOutput.push("*   *");
 expectedOutput.push("*****");
-inputs = {type : "Empty",height : 4, width : 5};
+inputs = {type : "empty",height : 5, width : 4};
 testGenerateRectangle(inputs,expectedOutput);
 
 expectedOutput  = [];
@@ -65,7 +65,7 @@ expectedOutput.push("*   *");
 expectedOutput.push("*   *");
 expectedOutput.push("*   *");
 expectedOutput.push("*****");
-inputs = {type : "Empty",height : 7, width : 5};
+inputs = {type : "empty",height : 5, width : 7};
 testGenerateRectangle(inputs,expectedOutput);
 
 expectedOutput = [];
@@ -76,13 +76,13 @@ expectedOutput.push("*                  *");
 expectedOutput.push("*                  *");
 expectedOutput.push("*                  *");
 expectedOutput.push("********************");
-inputs = {type : "Empty",height : 7, width : 20};  
+inputs = {type : "empty",height :20, width : 7 };  
 testGenerateRectangle(inputs,expectedOutput);
 
 expectedOutput = [];
 expectedOutput.push("**");
 expectedOutput.push("--");
-inputs = {type : "Alternating",height : 2, width : 2};  
+inputs = {type : "alternating",height : 2, width : 2};  
 testGenerateRectangle(inputs,expectedOutput);
 
 expectedOutput  = [];
@@ -90,7 +90,7 @@ expectedOutput.push("*****");
 expectedOutput.push("-----");
 expectedOutput.push("*****");
 expectedOutput.push("-----");
-inputs = {type : "Alternating",height : 4, width : 5};  
+inputs = {type : "alternating",height : 5, width : 4};  
 testGenerateRectangle(inputs,expectedOutput);
 
 expectedOutput  = [];
@@ -101,7 +101,7 @@ expectedOutput.push("-----");
 expectedOutput.push("*****");
 expectedOutput.push("-----");
 expectedOutput.push("*****");
-inputs = {type : "Alternating",height : 7, width : 5};  
+inputs = {type : "alternating",height : 5, width : 7};  
 testGenerateRectangle(inputs,expectedOutput);
 
 expectedOutput = [];
@@ -112,7 +112,7 @@ expectedOutput.push("--------------------");
 expectedOutput.push("********************");
 expectedOutput.push("--------------------");
 expectedOutput.push("********************");
-inputs = {type : "Alternating",height : 7, width : 20};
+inputs = {type : "alternating",height :20, width : 7 };
 testGenerateRectangle(inputs,expectedOutput);
 
 /*-------------------------Test Triangle ------------------------------------*/
@@ -126,7 +126,7 @@ const testGenerateTriangle = function(inputs,expectedOutput) {
 expectedOutput = [];
 expectedOutput.push("* ");
 expectedOutput.push("**");
-inputs = {type : "Left", height : 2, width : 0};
+inputs = {type : "left", height : 2, width : 0};
 testGenerateTriangle(inputs,expectedOutput);
 
 
@@ -134,7 +134,7 @@ expectedOutput = [];
 expectedOutput.push("*  ");
 expectedOutput.push("** ");
 expectedOutput.push("***");
-inputs = {type : "Left", height : 3, width : 0};  
+inputs = {type : "left", height : 3, width : 0};  
 testGenerateTriangle(inputs,expectedOutput);
 
 expectedOutput = [];
@@ -144,21 +144,21 @@ expectedOutput.push("***   ");
 expectedOutput.push("****  ");
 expectedOutput.push("***** ");
 expectedOutput.push("******");
-inputs = {type : "Left", height : 6, width : 0};  
+inputs = {type : "left", height : 6, width : 0};  
 testGenerateTriangle(inputs,expectedOutput);
 
 
 expectedOutput = [];
 expectedOutput.push(" *");
 expectedOutput.push("**");
-inputs = {type : "Right", height : 2, width : 0}; 
+inputs = {type : "right", height : 2, width : 0}; 
 testGenerateTriangle(inputs,expectedOutput);
 
 expectedOutput = [];
 expectedOutput.push("  *");
 expectedOutput.push(" **");
 expectedOutput.push("***");
-inputs = {type : "Right",height : 3, width : 0};
+inputs = {type : "right",height : 3, width : 0};
 testGenerateTriangle(inputs,expectedOutput);
 
 expectedOutput = [];
@@ -168,7 +168,7 @@ expectedOutput.push("   ***");
 expectedOutput.push("  ****");
 expectedOutput.push(" *****");
 expectedOutput.push("******");
-inputs = {type : "Right",height : 6, width : 0}; 
+inputs = {type : "right",height : 6, width : 0}; 
 testGenerateTriangle(inputs,expectedOutput);
 
 /*-------------------------- Test Diamond ----------------------------------*/
@@ -185,7 +185,7 @@ expectedOutput.push(" *** ");
 expectedOutput.push("*****");
 expectedOutput.push(" *** ");
 expectedOutput.push("  *  ");
-inputs = {type : "Filled", height : 5, width : 0}; 
+inputs = {type : "filled", height : 5, width : 0}; 
 testGenerateDiamond(inputs,expectedOutput);
 
 expectedOutput = [];
@@ -196,7 +196,7 @@ expectedOutput.push("*******");
 expectedOutput.push(" ***** ");
 expectedOutput.push("  ***  ");
 expectedOutput.push("   *   ");
-inputs = {type : "Filled", height : 7, width : 0};
+inputs = {type : "filled", height : 7, width : 0};
 testGenerateDiamond(inputs,expectedOutput);
 
 
@@ -210,7 +210,7 @@ expectedOutput.push(" ******* ");
 expectedOutput.push("  *****  ");
 expectedOutput.push("   ***   ");
 expectedOutput.push("    *    ");
-inputs = {type : "Filled", height : 10, width : 0}; 
+inputs = {type : "filled", height : 10, width : 0}; 
 testGenerateDiamond(inputs,expectedOutput);
 
 expectedOutput = [];
@@ -219,7 +219,7 @@ expectedOutput.push(" * * ");
 expectedOutput.push("*   *");
 expectedOutput.push(" * * ");
 expectedOutput.push("  *  ");
-inputs = {type : "Hollow", height : 5, width : 0}; 
+inputs = {type : "hollow", height : 5, width : 0}; 
 testGenerateDiamond(inputs,expectedOutput);
 
 expectedOutput = [];
@@ -230,7 +230,7 @@ expectedOutput.push("*     *");
 expectedOutput.push(" *   * ");
 expectedOutput.push("  * *  ");
 expectedOutput.push("   *   ");
-inputs = {type : "Hollow", height : 7, width : 0};  
+inputs = {type : "hollow", height : 7, width : 0};  
 testGenerateDiamond(inputs,expectedOutput);
 
 expectedOutput = [];
@@ -243,7 +243,7 @@ expectedOutput.push(" *     * ");
 expectedOutput.push("  *   *  ");
 expectedOutput.push("   * *   ");
 expectedOutput.push("    *    ");
-inputs = {type : "Hollow", height : 10, width : 0};
+inputs = {type : "hollow", height : 10, width : 0};
 testGenerateDiamond(inputs,expectedOutput);
 
 expectedOutput = [];
@@ -252,7 +252,7 @@ expectedOutput.push(" / \\ ");
 expectedOutput.push("*   *");
 expectedOutput.push(" \\ / ");
 expectedOutput.push("  *  ");
-inputs = {type : "Angled", height : 5, width : 0};
+inputs = {type : "angled", height : 5, width : 0};
 testGenerateDiamond(inputs,expectedOutput);
 
 expectedOutput = [];
@@ -263,7 +263,7 @@ expectedOutput.push("*     *");
 expectedOutput.push(" \\   / ");
 expectedOutput.push("  \\ /  ");
 expectedOutput.push("   *   ");
-inputs = {type : "Angled", height : 7, width : 0};  
+inputs = {type : "angled", height : 7, width : 0};  
 testGenerateDiamond(inputs,expectedOutput);
 
 expectedOutput = [];
@@ -276,6 +276,6 @@ expectedOutput.push(" \\     / ");
 expectedOutput.push("  \\   /  ");
 expectedOutput.push("   \\ /   ");
 expectedOutput.push("    *    ");
-inputs = {type : "Angled", height : 10, width : 0}; 
+inputs = {type : "angled", height : 10, width : 0}; 
 testGenerateDiamond(inputs,expectedOutput);
 

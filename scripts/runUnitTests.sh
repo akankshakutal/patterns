@@ -2,4 +2,4 @@
  
 node ./test/patternLibTest.js
 
-node ./test/patternsUtilLibTest.js
+node ./test/patternUtilTest.js

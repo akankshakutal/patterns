@@ -5,48 +5,39 @@ const {createFilledRect,
        createRightTriangle,
        createFilledDiamond,
        createHollowDiamond,
-       createAngledDiamond } = require('./patternsUtilLib.js');
+       createAngledDiamond } = require('./patternUtil.js');
 
 const generateRectangle = function(parameters) {
-  let rectangle = "";
-  if(parameters.type.toLowerCase()  == "filled") {
-    rectangle = createFilledRect(parameters.width,parameters.height);
+  const rectangleTypes = { 
+    'filled' : createFilledRect,
+    'empty' : createEmptyRect,
+    'alternating' : createAlternateRect,
   }
-  if(parameters.type.toLowerCase()   == "empty") {
-    rectangle = createEmptyRect(parameters.width,parameters.height);
-  }
-  if(parameters.type.toLowerCase()   == "alternating") {
-    rectangle = createAlternateRect(parameters.width,parameters.height);
-  }
+  let rectangle = rectangleTypes[parameters.type](parameters.height,parameters.width);
   return rectangle;
 }
 
 const generateTriangle = function(parameters) {
-  let triangle  = ""; 
-  if(parameters.type.toLowerCase()  == "left") {
-    triangle = createLeftTriangle(parameters.height);
+  const triangleTypes = {
+    "left" : createLeftTriangle,
+    "right" : createRightTriangle,
   }
-  if(parameters.type.toLowerCase()  == "right") {
-    triangle = createRightTriangle(parameters.height);
-  }
+  let triangle = triangleTypes[parameters.type](parameters.height);
   return triangle;
 }
 
 const generateDiamond = function (parameters) {
-  let diamond  = ""; 
-  if(parameters.height %2 == 0) {
+  if(parameters.height%2  == 0) {
     parameters.height --;
   }
-  if(parameters.type.toLowerCase()  == "filled"){
-    diamond = createFilledDiamond(parameters.height);
+
+  const diamondTypes = {
+    "filled" : createFilledDiamond,
+    "hollow" : createHollowDiamond,
+    "angled" : createAngledDiamond
   }
-  if(parameters.type.toLowerCase()  == "hollow") {
-    diamond = createHollowDiamond(parameters.height);
-  }
-  if(parameters.type.toLowerCase()  == "angled") {
-    diamond=createAngledDiamond(parameters.height);
-  }
-    return diamond;
+  let diamond = diamondTypes[parameters.type](parameters.height);
+  return diamond;
 }
 
 exports.generateDiamond = generateDiamond;
