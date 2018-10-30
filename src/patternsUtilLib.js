@@ -1,13 +1,14 @@
 const extractParameters = function (userArgs) { 
-  let type = userArgs[2];
-  let height = +userArgs[3];
-  let width = +userArgs[4];
+  parameters = userArgs.slice(2);
+  let type = parameters[0];
+  let height = +parameters[1];
+  let width = +parameters[2];
   return {type : type, height : height, width : width};
 }
 exports.extractParameters = extractParameters;
 
 const repeatCharacter = function (character,times) {
-  let line = '';
+  let line = "";
   for (let count = 0; count < times; count++) {
     line = line + character;
   }
@@ -39,11 +40,10 @@ exports.leftJustifyLine = leftJustifyLine;
 const createLine = function(leftChar,middleChar,rightChar,width) { 
   let leftBorderWidth = 1 % (width + 1);
   let rightBorderWidth = 1 % width;
-  let line = [];
-  line[0] = repeatCharacter(leftChar, leftBorderWidth);
-  line[1] = repeatCharacter(middleChar, width - 2);
-  line[2] = repeatCharacter(rightChar, rightBorderWidth);
-  return line.join("");
+  let line  = repeatCharacter(leftChar, leftBorderWidth);
+  line += repeatCharacter(middleChar, width - 2);
+  line += repeatCharacter(rightChar, rightBorderWidth);
+  return line;
 }
 exports.createLine = createLine;
 
@@ -67,41 +67,44 @@ exports.lowerAngledLineGenerator = lowerAngledLineGenerator;
 
 const createFilledRect = function (width,height) {
   let rectangle = new Array(height).fill(starLineGenerator(width));
-  return rectangle.join("\n");
+  return rectangle;
 }
 exports.createFilledRect = createFilledRect;
 
 const createEmptyRect = function (width,height) {
   let rectangle = [];
-  rectangle[0] = starLineGenerator(width);
-  for(let row = 1; row < height-1; row++){
-    rectangle[row] = hollowLineGenerator(width);
+  if(width > 0 && height > 0) {
+    rectangle.push(starLineGenerator(width));
+    for(let row = 1; row < height-1; row++){
+      rectangle.push(hollowLineGenerator(width));
+    }
+    rectangle.push(starLineGenerator(width));
+    return rectangle;
   }
-  rectangle[height-1] = starLineGenerator(width);
-  return rectangle.join("\n");
+  return rectangle;
 }
 exports.createEmptyRect = createEmptyRect;
 
 const createAlternateRect = function(width,height) {
   let rectangle = [];
   for(let row=0; row<height; row++) {
-    rectangle[row] = starLineGenerator(width);
-    if(row % 2 != 0) {
-      rectangle[row] = dashLineGenerator(width);
+    let line = starLineGenerator(width)
+    if(row%2 != 0) {
+      line = dashLineGenerator(width);
     }
+    rectangle.push(line);
   }
-  return rectangle.join("\n");
+  return rectangle;
 }
 exports.createAlternateRect = createAlternateRect;
 
 const createTriangle = function(height,justifier,lineGenerator) {
   let triangle = [];
-  for(row=0; row<height; row++) {
-    triangle[row] = lineGenerator(row+1);
-    let line = triangle[row];
-    triangle[row] = justifier(line,height);
+  for(row=1; row<=height; row++) {
+    let line = lineGenerator(row);
+    triangle.push(justifier(line,height));
   }
-  return triangle.join("\n");
+  return triangle;
 }
 exports.createTriangle = createTriangle;
 
@@ -120,7 +123,7 @@ const generateUpperPartOfDiamond = function (height,lineGenerator) {
   for (let rowLength=1; rowLength<height; rowLength+=2) {
     upperPart.push(centerJustifyLine(lineGenerator(rowLength),height));
   }
-  return upperPart.join("\n");
+  return upperPart;
 }
 exports.generateUpperPartOfDiamond = generateUpperPartOfDiamond;
 
@@ -129,23 +132,24 @@ const generateLowerPartOfDiamond = function(height,lineGenerator) {
    for (let rowLength=height; rowLength>=1; rowLength-=2) {
     lowerPart.push(centerJustifyLine(lineGenerator(rowLength),height));
   }
-  return lowerPart.join("\n");
+  return lowerPart;
 }
 exports.generateLowerPartOfDiamond = generateLowerPartOfDiamond;
 
 const createFilledDiamond = function(height) {
   let diamond = [];
-  diamond[0] = generateUpperPartOfDiamond(height,starLineGenerator);
-  diamond[0] = diamond[0] + "\n" + generateLowerPartOfDiamond(height,starLineGenerator);
-  return diamond.join("\n");
+  diamond = diamond.concat(generateUpperPartOfDiamond(height,starLineGenerator));
+  diamond = diamond.concat(generateLowerPartOfDiamond(height,starLineGenerator));
+
+  return diamond;
 }
 exports.createFilledDiamond = createFilledDiamond;
 
 const createHollowDiamond = function(height) {
   let diamond = [];
-  diamond[0] = generateUpperPartOfDiamond(height,hollowLineGenerator);
-  diamond[0] = diamond[0] + "\n" + generateLowerPartOfDiamond(height,hollowLineGenerator);
-  return diamond.join("\n");
+  diamond = diamond.concat(generateUpperPartOfDiamond(height,hollowLineGenerator));
+  diamond = diamond.concat(generateLowerPartOfDiamond(height,hollowLineGenerator));
+  return diamond;
 }
 exports.createHollowDiamond = createHollowDiamond;
 
@@ -154,7 +158,7 @@ const generateUpperPartOfAngledDiamond = function (height,lineGenerator) {
   for (let rowLength=3; rowLength<height-1; rowLength+=2) {
     upperPart.push(centerJustifyLine(lineGenerator(rowLength),height));
   }
-  return upperPart.join("\n");
+  return upperPart;
 }
 exports.generateUpperPartOfAngledDiamond = generateUpperPartOfAngledDiamond;
 
@@ -163,17 +167,18 @@ const generateLowerPartOfAngledDiamond = function(height,lineGenerator) {
    for (let rowLength=height-2; rowLength>1; rowLength-=2) {
     lowerPart.push(centerJustifyLine(lineGenerator(rowLength),height));
   }
-  return lowerPart.join("\n");
+  return lowerPart;
 }
 exports.generateLowerPartOfAngledDiamond = generateLowerPartOfAngledDiamond;
 
+
 const createAngledDiamond = function(height){
   let diamond = [];
-  diamond[0] = centerJustifyLine("*",height);
-  diamond[0] = diamond[0] + "\n" + generateUpperPartOfAngledDiamond(height,upperAngledLineGenerator);
-  diamond[0] = diamond[0] + "\n" + hollowLineGenerator(height);
-  diamond[0] = diamond[0] + "\n" + generateLowerPartOfAngledDiamond(height,lowerAngledLineGenerator);
-  diamond[0] = diamond[0] + "\n" + centerJustifyLine("*",height);
-  return diamond.join("\n");
+  diamond =  diamond.concat(centerJustifyLine("*",height));
+  diamond = diamond.concat(generateUpperPartOfAngledDiamond(height,upperAngledLineGenerator));
+  diamond = diamond.concat(hollowLineGenerator(height));
+  diamond = diamond.concat(generateLowerPartOfAngledDiamond(height,lowerAngledLineGenerator));
+  diamond = diamond.concat(centerJustifyLine("*",height));
+  return diamond;
 }
 exports.createAngledDiamond = createAngledDiamond;

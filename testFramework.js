@@ -7,8 +7,6 @@ const justify = function(text) {
 }
 
 const printLog = function (functionName,inputs,expectedOutput,actualOutput) { 
-  expectedOutput = expectedOutput.split("\n");
-  actualOutput = actualOutput.split("\n");
    let output = zipArrays(expectedOutput,actualOutput);
   console.log("--------------",functionName.name,"-----------------");
   console.log("\n Inputs      : ",inputs);

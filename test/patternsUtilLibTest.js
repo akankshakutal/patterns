@@ -27,418 +27,363 @@ const { extractParameters,
 
 /*------------------ ExtractParameters function tests --------------*/
 
-let actualOutput = extractParameters([,,"Filled",5,6]);
-let expectedOutput = {type : "Filled" , height : 5 , width : 6};
-assert.deepEqual(actualOutput,expectedOutput);
+const testExtractParameters = function(inputs,expectedOutput) { 
+  let actualOutput = extractParameters(inputs);
+  assert.deepEqual(actualOutput,expectedOutput);
+}
 
-actualOutput = extractParameters([,,"Empty",9,-3]);
+let inputs,expectedOutput;
+
+inputs = [,,"Filled",5,6];
+expectedOutput = {type : "Filled" , height : 5 , width : 6};
+testExtractParameters(inputs,expectedOutput);
+
+inputs = [,,"Empty",9,-3];
 expectedOutput = {type : "Empty" , height : 9 , width : -3};
-assert.deepEqual(actualOutput,expectedOutput);
+testExtractParameters(inputs,expectedOutput);
 
-actualOutput = extractParameters([,,"Empty",9,-3]);
+inputs = [,,"Empty",9,-3];
 expectedOutput = {type : "Empty" , height : 9 , width : -3};
-assert.deepEqual(actualOutput,expectedOutput);
+testExtractParameters(inputs,expectedOutput);
 
-/*------------------ RepeateCharacter function tests --------------*/
+/*------------------ RepeatCharacter function tests --------------*/
 
-let inputs = ["*",0];
-actualOutput = repeatCharacter("*",0);
+const testFunction = function(functionName,inputs,expectedOutput) { 
+  actualOutput = functionName(inputs[0],inputs[1],inputs[2]);
+  assert.deepEqual(actualOutput,expectedOutput);
+  printLog(functionName,inputs,expectedOutput,actualOutput);
+}
+
+inputs = ["*",0];
 expectedOutput = "";
-assert.equal(actualOutput,expectedOutput);
-printLog(repeatCharacter,inputs,expectedOutput,actualOutput);
+testFunction(repeatCharacter,inputs,expectedOutput);
 
 inputs = ["-",1];
-actualOutput = repeatCharacter("-",1);
+expectedOutput = "";
 expectedOutput = "-";
-assert.equal(actualOutput,expectedOutput);
-printLog(repeatCharacter,inputs,expectedOutput,actualOutput);
+testFunction(repeatCharacter,inputs,expectedOutput);
 
 inputs = ["#",5];
-actualOutput = repeatCharacter("#",5);
 expectedOutput = "#####";
-assert.equal(actualOutput,expectedOutput);
-printLog(repeatCharacter,inputs,expectedOutput,actualOutput);
+testFunction(repeatCharacter,inputs,expectedOutput);
 
 inputs = ["*",2];
-actualOutput = repeatCharacter("*",2);
 expectedOutput = "**";
-assert.equal(actualOutput,expectedOutput);
-printLog(repeatCharacter,inputs,expectedOutput,actualOutput);
+testFunction(repeatCharacter,inputs,expectedOutput);
 
 /*------------------ RightJustifyLine function tests --------------*/
 
 inputs = ["Foo",5];
-actualOutput = rightJustifyLine("Foo",5);
 expectedOutput = "  Foo";
-assert.equal(actualOutput,expectedOutput);
-printLog(rightJustifyLine,inputs,expectedOutput,actualOutput);
+testFunction(rightJustifyLine,inputs,expectedOutput);
 
 inputs = ["Omkar",0];
-actualOutput = rightJustifyLine("Omkar",0);
 expectedOutput = "Omkar";
-assert.equal(actualOutput,expectedOutput);
-printLog(rightJustifyLine,inputs,expectedOutput,actualOutput);
+testFunction(rightJustifyLine,inputs,expectedOutput);
 
 inputs = ["Ok",3];
-actualOutput = rightJustifyLine("Ok",3);
 expectedOutput = " Ok";
-assert.equal(actualOutput,expectedOutput);
-printLog(rightJustifyLine,inputs,expectedOutput,actualOutput);
+testFunction(rightJustifyLine,inputs,expectedOutput);
 
 /*------------------ LeftJustifyLine function tests --------------*/
 
 inputs = ["Foo",5];
-actualOutput = leftJustifyLine("Foo",5);
 expectedOutput = "Foo  ";
-assert.equal(actualOutput,expectedOutput);
-printLog(leftJustifyLine,inputs,expectedOutput,actualOutput);
+testFunction(leftJustifyLine,inputs,expectedOutput);
 
 inputs = ["Omkar",0];
-actualOutput = leftJustifyLine("Omkar",0);
 expectedOutput = "Omkar";
-assert.equal(actualOutput,expectedOutput);
-printLog(leftJustifyLine,inputs,expectedOutput,actualOutput);
+testFunction(leftJustifyLine,inputs,expectedOutput);
 
 inputs = ["Ok",3];
-actualOutput = leftJustifyLine("Ok",3);
 expectedOutput = "Ok ";
-assert.equal(actualOutput,expectedOutput);
-printLog(leftJustifyLine,inputs,expectedOutput,actualOutput);
+testFunction(leftJustifyLine,inputs,expectedOutput);
 
 /*------------------ CreateLineGenerator function tests --------------*/
 
+const testCreateLineGenerator = function(inputs,expectedOutput) { 
+  let actualOutput = createLineGenerator(inputs[0],inputs[1],inputs[2]);
+  actualOutput = actualOutput(5);
+  assert.deepEqual(actualOutput,expectedOutput);
+  printLog(createLineGenerator,inputs,expectedOutput,actualOutput);
+}
+
 inputs = ["*","*","*"];
-actualOutput = createLineGenerator("*","*","*");
-actualOutput = actualOutput(5);
 expectedOutput = "*****";
-assert.deepEqual(actualOutput,expectedOutput);
-printLog(createLineGenerator,inputs,expectedOutput,actualOutput);
+testCreateLineGenerator(inputs,expectedOutput);
 
 inputs = ["*","-","*"];
-actualOutput = createLineGenerator("*","-","*");
-actualOutput = actualOutput(5);
 expectedOutput = "*---*";
-assert.deepEqual(actualOutput,expectedOutput);
-printLog(createLineGenerator,inputs,expectedOutput,actualOutput);
+testCreateLineGenerator(inputs,expectedOutput);
 
 inputs = ["#"," ","#"];
-actualOutput = createLineGenerator("#"," ","#");
-actualOutput = actualOutput(0);
-expectedOutput = "";
-assert.deepEqual(actualOutput,expectedOutput);
-printLog(createLineGenerator,inputs,expectedOutput,actualOutput);
+expectedOutput = "#   #";
+testCreateLineGenerator(inputs,expectedOutput);
 
 /*------------------ CreateFilledRect function tests --------------*/
 
 inputs = [0,0];
-actualOutput = createFilledRect(0,0);
-expectedOutput = "";
-assert.equal(actualOutput,expectedOutput);
-printLog(createFilledRect,inputs,expectedOutput,actualOutput);
+expectedOutput = [];
+testFunction(createFilledRect,inputs,expectedOutput);
 
 inputs = [1,1];
-actualOutput = createFilledRect(1,1);
-expectedOutput = "*";
-assert.equal(actualOutput,expectedOutput);
-printLog(createFilledRect,inputs,expectedOutput,actualOutput);
+expectedOutput = [];
+expectedOutput.push("*");
+testFunction(createFilledRect,inputs,expectedOutput);
 
 inputs = [2,2];
-actualOutput = createFilledRect(2,2);
-expectedOutput  = "**\n"
-expectedOutput += "**";
-assert.equal(actualOutput,expectedOutput);
-printLog(createFilledRect,inputs,expectedOutput,actualOutput);
+expectedOutput = [];
+expectedOutput.push("**");
+expectedOutput.push("**");
+testFunction(createFilledRect,inputs,expectedOutput);
 
 inputs = [5,5];
-actualOutput = createFilledRect(5,5);
-expectedOutput  = "*****\n";
-expectedOutput += "*****\n";
-expectedOutput += "*****\n";
-expectedOutput += "*****\n";
-expectedOutput += "*****";
-assert.equal(actualOutput,expectedOutput);
-printLog(createFilledRect,inputs,expectedOutput,actualOutput);
+expectedOutput = [];
+expectedOutput.push("*****");
+expectedOutput.push("*****");
+expectedOutput.push("*****");
+expectedOutput.push("*****");
+expectedOutput.push("*****");
+testFunction(createFilledRect,inputs,expectedOutput);
 
 /*------------------ createEmptyRect function tests --------------*/
 
 inputs = [0,0];
-actualOutput = createEmptyRect(0,0);
-expectedOutput = "";
-assert.equal(actualOutput,expectedOutput);
-printLog(createEmptyRect,inputs,expectedOutput,actualOutput);
-
-inputs[1,1];
-actualOutput = createEmptyRect(1,1);
-expectedOutput = "*";
-assert.equal(actualOutput,expectedOutput);
-printLog(createEmptyRect,inputs,expectedOutput,actualOutput);
+expectedOutput = [];
+testFunction(createEmptyRect,inputs,expectedOutput);
 
 inputs = [2,2];
-actualOutput = createEmptyRect(2,2);
-expectedOutput  = "**\n"
-expectedOutput += "**";
-assert.equal(actualOutput,expectedOutput);
-printLog(createEmptyRect,inputs,expectedOutput,actualOutput);
+expectedOutput = [];
+expectedOutput.push("**");
+expectedOutput.push("**");
+testFunction(createEmptyRect,inputs,expectedOutput);
 
 inputs = [5,5];
-actualOutput = createEmptyRect(5,5);
-expectedOutput  = "*****\n";
-expectedOutput += "*   *\n";
-expectedOutput += "*   *\n";
-expectedOutput += "*   *\n";
-expectedOutput += "*****";
-assert.equal(actualOutput,expectedOutput);
-printLog(createEmptyRect,inputs,expectedOutput,actualOutput);
+expectedOutput =  [];
+expectedOutput.push("*****");
+expectedOutput.push("*   *");
+expectedOutput.push("*   *");
+expectedOutput.push("*   *");
+expectedOutput.push("*****");
+testFunction(createEmptyRect,inputs,expectedOutput);
 
 /*------------------ createAlternateRect function tests --------------*/
 
 inputs = [0,0];
-actualOutput = createAlternateRect(0,0);
-expectedOutput = "";
-assert.equal(actualOutput,expectedOutput);
-printLog(createAlternateRect,inputs,expectedOutput,actualOutput);
+expectedOutput = [];
+testFunction(createAlternateRect,inputs,expectedOutput);
 
 inputs = [1,1];
-actualOutput = createAlternateRect(1,1);
-expectedOutput = "*";
-assert.equal(actualOutput,expectedOutput);
-printLog(createAlternateRect,inputs,expectedOutput,actualOutput);
+expectedOutput = [];
+expectedOutput.push("*");
+testFunction(createAlternateRect,inputs,expectedOutput);
 
 inputs = [2,2];
-actualOutput = createAlternateRect(2,2);
-expectedOutput  = "**\n"
-expectedOutput += "--";
-assert.equal(actualOutput,expectedOutput);
-printLog(createAlternateRect,inputs,expectedOutput,actualOutput);
+expectedOutput = [];
+expectedOutput.push("**");
+expectedOutput.push("--");
+testFunction(createAlternateRect,inputs,expectedOutput);
 
 inputs = [5,5];
-actualOutput = createAlternateRect(5,5);
-expectedOutput  = "*****\n";
-expectedOutput += "-----\n";
-expectedOutput += "*****\n";
-expectedOutput += "-----\n";
-expectedOutput += "*****";
-assert.equal(actualOutput,expectedOutput);
-printLog(createAlternateRect,inputs,expectedOutput,actualOutput);
+expectedOutput = [];
+expectedOutput.push("*****");
+expectedOutput.push("-----");
+expectedOutput.push("*****");
+expectedOutput.push("-----");
+expectedOutput.push("*****");
+testFunction(createAlternateRect,inputs,expectedOutput);
 
 /*------------------ CreateTriangle function tests --------------*/
 
-inputs = [0];
-actualOutput = createTriangle(0,rightJustifyLine,starLineGenerator);
-expectedOutput = "";
-assert.equal(actualOutput,expectedOutput);
-printLog(createTriangle,inputs,expectedOutput,actualOutput);
+inputs = [0,leftJustifyLine,starLineGenerator];
+expectedOutput = [];
+testFunction(createTriangle,inputs,expectedOutput);
 
-inputs = [1];
-actualOutput = createTriangle(1,leftJustifyLine,dashLineGenerator);
-expectedOutput = "-";
-assert.equal(actualOutput,expectedOutput);
-printLog(createTriangle,inputs,expectedOutput,actualOutput);
+inputs = [1,leftJustifyLine,dashLineGenerator];
+expectedOutput = [];
+expectedOutput.push("-");
+testFunction(createTriangle,inputs,expectedOutput);
 
-inputs [2];
-actualOutput = createTriangle(2,leftJustifyLine,dashLineGenerator);
-expectedOutput  = "- \n"
-expectedOutput += "--";
-assert.equal(actualOutput,expectedOutput);
-printLog(createTriangle,inputs,expectedOutput,actualOutput);
+inputs = [2,leftJustifyLine,dashLineGenerator];
+expectedOutput = [];
+expectedOutput.push("- ");
+expectedOutput.push("--");
+testFunction(createTriangle,inputs,expectedOutput);
 
-inputs = [5];
-actualOutput = createTriangle(5,leftJustifyLine,starLineGenerator);
-expectedOutput  = "*    \n";
-expectedOutput += "**   \n";
-expectedOutput += "***  \n";
-expectedOutput += "**** \n";
-expectedOutput += "*****";
-assert.equal(actualOutput,expectedOutput);
-printLog(createLeftTriangle,inputs,expectedOutput,actualOutput);
+inputs = [5,leftJustifyLine,dashLineGenerator];
+expectedOutput = [];
+expectedOutput.push("-    ");
+expectedOutput.push("--   ");
+expectedOutput.push("---  ");
+expectedOutput.push("---- ");
+expectedOutput.push("-----");
+testFunction(createTriangle,inputs,expectedOutput);
 
 /*------------------ CreateLeftTriangle function tests --------------*/
 
 inputs = [0];
-actualOutput = createLeftTriangle(0);
-expectedOutput = "";
-assert.equal(actualOutput,expectedOutput);
-printLog(createLeftTriangle,inputs,expectedOutput,actualOutput);
+expectedOutput = [];
+testFunction(createLeftTriangle,inputs,expectedOutput);
 
 inputs = [1];
-actualOutput = createLeftTriangle(1);
-expectedOutput = "*";
-assert.equal(actualOutput,expectedOutput);
-printLog(createLeftTriangle,inputs,expectedOutput,actualOutput);
+expectedOutput =  [];
+expectedOutput.push("*");
+testFunction(createLeftTriangle,inputs,expectedOutput);
 
-inputs [2];
-actualOutput = createLeftTriangle(2);
-expectedOutput  = "* \n"
-expectedOutput += "**";
-assert.equal(actualOutput,expectedOutput);
-printLog(createLeftTriangle,inputs,expectedOutput,actualOutput);
+inputs = [2];
+expectedOutput = [];
+expectedOutput.push("* ");
+expectedOutput.push("**");
+testFunction(createLeftTriangle,inputs,expectedOutput);
 
 inputs = [5];
-actualOutput = createLeftTriangle(5);
-expectedOutput  = "*    \n";
-expectedOutput += "**   \n";
-expectedOutput += "***  \n";
-expectedOutput += "**** \n";
-expectedOutput += "*****";
-assert.equal(actualOutput,expectedOutput);
-printLog(createLeftTriangle,inputs,expectedOutput,actualOutput);
+expectedOutput = [];
+expectedOutput.push("*    ");
+expectedOutput.push("**   ");
+expectedOutput.push("***  ");
+expectedOutput.push("**** ");
+expectedOutput.push("*****");
+testFunction(createLeftTriangle,inputs,expectedOutput);
 
 /*------------------ CreateRightTriangle function tests --------------*/
 
 inputs = [0];
-actualOutput = createRightTriangle(0);
-expectedOutput = "";
-assert.equal(actualOutput,expectedOutput);
-printLog(createRightTriangle,inputs,expectedOutput,actualOutput);
+expectedOutput = [];
+testFunction(createRightTriangle,inputs,expectedOutput);
 
 inputs = [1];
-actualOutput = createRightTriangle(1);
-expectedOutput = "*";
-assert.equal(actualOutput,expectedOutput);
-printLog(createRightTriangle,inputs,expectedOutput,actualOutput);
+expectedOutput = [];
+expectedOutput.push("*");
+testFunction(createRightTriangle,inputs,expectedOutput);
 
 inputs = [2];
-actualOutput = createRightTriangle(2);
-expectedOutput  = " *\n"
-expectedOutput += "**";
-assert.equal(actualOutput,expectedOutput);
-printLog(createRightTriangle,inputs,expectedOutput,actualOutput);
+expectedOutput = [];
+expectedOutput.push(" *");
+expectedOutput.push("**");
+testFunction(createRightTriangle,inputs,expectedOutput);
 
 inputs = [5];
-actualOutput = createRightTriangle(5);
-expectedOutput  = "    *\n";
-expectedOutput += "   **\n";
-expectedOutput += "  ***\n";
-expectedOutput += " ****\n";
-expectedOutput += "*****";
-assert.equal(actualOutput,expectedOutput);
-printLog(createRightTriangle,inputs,expectedOutput,actualOutput);
+expectedOutput = [];
+expectedOutput.push("    *");
+expectedOutput.push("   **");
+expectedOutput.push("  ***");
+expectedOutput.push(" ****");
+expectedOutput.push("*****");
+testFunction(createRightTriangle,inputs,expectedOutput);
 
 /*------------------ generateUpperPartOfDiamond function tests --------------*/
 
 inputs = [5,starLineGenerator];
-actualOutput = generateUpperPartOfDiamond(5,starLineGenerator);
-expectedOutput  = "  *  \n";
-expectedOutput += " *** ";
-assert.deepEqual(actualOutput,expectedOutput);
-printLog(generateUpperPartOfDiamond,inputs,expectedOutput,actualOutput);
+expectedOutput = [];
+expectedOutput.push("  *  ");
+expectedOutput.push(" *** ");
+testFunction(generateUpperPartOfDiamond,inputs,expectedOutput);
 
 inputs = [7,starLineGenerator];
-actualOutput = generateUpperPartOfDiamond(7,starLineGenerator);
-expectedOutput  = "   *   \n";
-expectedOutput += "  ***  \n";
-expectedOutput += " ***** "
-assert.deepEqual(actualOutput,expectedOutput);
-printLog(generateUpperPartOfDiamond,inputs,expectedOutput,actualOutput);
+expectedOutput = [];
+expectedOutput.push("   *   ");
+expectedOutput.push("  ***  ");
+expectedOutput.push(" ***** ");
+testFunction(generateUpperPartOfDiamond,inputs,expectedOutput);
 
 /*------------------ generateLowerPartOfDiamond function tests --------------*/
 
 inputs = [5,starLineGenerator];
-actualOutput = generateLowerPartOfDiamond(5,starLineGenerator);
-expectedOutput  = "*****\n";
-expectedOutput += " *** \n";
-expectedOutput += "  *  ";
-assert.deepEqual(actualOutput,expectedOutput);
-printLog(generateLowerPartOfDiamond,inputs,expectedOutput,actualOutput);
+expectedOutput = [];
+expectedOutput.push("*****");
+expectedOutput.push(" *** ");
+expectedOutput.push("  *  ");
+testFunction(generateLowerPartOfDiamond,inputs,expectedOutput);
 
 inputs = [7,starLineGenerator];
-actualOutput = generateLowerPartOfDiamond(7,starLineGenerator);
-expectedOutput  = "*******\n";
-expectedOutput += " ***** \n";
-expectedOutput += "  ***  \n";
-expectedOutput += "   *   "
-assert.deepEqual(actualOutput,expectedOutput);
-printLog(generateLowerPartOfDiamond,inputs,expectedOutput,actualOutput);
+expectedOutput = [];
+expectedOutput.push("*******");
+expectedOutput.push(" ***** ");
+expectedOutput.push("  ***  ");
+expectedOutput.push("   *   ");
+testFunction(generateLowerPartOfDiamond,inputs,expectedOutput);
 
 /*------------------ CreateFilledDiamond function tests --------------*/
 
 inputs = [3];
-actualOutput = createFilledDiamond(3);
-expectedOutput  = " * \n";
-expectedOutput += "***\n";
-expectedOutput += " * ";
-assert.equal(actualOutput,expectedOutput);
-printLog(createFilledDiamond,inputs,expectedOutput,actualOutput);
+expectedOutput = [];
+expectedOutput.push(" * ");
+expectedOutput.push("***");
+expectedOutput.push(" * ");
+testFunction(createFilledDiamond,inputs,expectedOutput);
 
 inputs = [5];
-actualOutput = createFilledDiamond(5);
-expectedOutput  = "  *  \n";
-expectedOutput += " *** \n";
-expectedOutput += "*****\n"
-expectedOutput += " *** \n";
-expectedOutput += "  *  ";
-assert.equal(actualOutput,expectedOutput);
-printLog(createFilledDiamond,inputs,expectedOutput,actualOutput);
+expectedOutput = [];
+expectedOutput.push("  *  ");
+expectedOutput.push(" *** ");
+expectedOutput.push("*****")
+expectedOutput.push(" *** ");
+expectedOutput.push("  *  ");
+testFunction(createFilledDiamond,inputs,expectedOutput);
 
 /*------------------ CreateHollowDiamond function tests --------------*/
+
 inputs = [3];
-actualOutput = createHollowDiamond(3);
-expectedOutput  = " * \n";
-expectedOutput += "* *\n";
-expectedOutput += " * ";
-assert.equal(actualOutput,expectedOutput);
-printLog(createHollowDiamond,inputs,expectedOutput,actualOutput);
+expectedOutput = [];
+expectedOutput.push(" * ");
+expectedOutput.push("* *");
+expectedOutput.push(" * ");
+testFunction(createHollowDiamond,inputs,expectedOutput);
 
 inputs = [5];
-actualOutput = createHollowDiamond(5);
-expectedOutput  = "  *  \n";
-expectedOutput += " * * \n";
-expectedOutput += "*   *\n"
-expectedOutput += " * * \n";
-expectedOutput += "  *  ";
-assert.equal(actualOutput,expectedOutput);
-printLog(createHollowDiamond,inputs,expectedOutput,actualOutput);
+expectedOutput =  [];
+expectedOutput.push("  *  ");
+expectedOutput.push(" * * ");
+expectedOutput.push("*   *");
+expectedOutput.push(" * * ");
+expectedOutput.push("  *  ");
+testFunction(createHollowDiamond,inputs,expectedOutput);
 
 /*------------------ generateUpperPartOfAngledDiamond function tests --------------*/
 
 inputs = [5,upperAngledLineGenerator];
-actualOutput = generateUpperPartOfAngledDiamond(5,upperAngledLineGenerator);
-expectedOutput = " / \\ ";
-assert.deepEqual(actualOutput,expectedOutput);
-printLog(generateUpperPartOfAngledDiamond,inputs,expectedOutput,actualOutput);
+expectedOutput = [];
+expectedOutput.push(" / \\ ");
+testFunction(generateUpperPartOfAngledDiamond,inputs,expectedOutput);
 
 inputs = [7,upperAngledLineGenerator];
-actualOutput = generateUpperPartOfAngledDiamond(7,upperAngledLineGenerator);
-expectedOutput  = "  / \\  \n";
-expectedOutput += " /   \\ "
-assert.deepEqual(actualOutput,expectedOutput);
-printLog(generateUpperPartOfAngledDiamond,inputs,expectedOutput,actualOutput);
+expectedOutput = [];
+expectedOutput.push("  / \\  ");
+expectedOutput.push(" /   \\ ");
+testFunction(generateUpperPartOfAngledDiamond,inputs,expectedOutput);
 
 /*------------------ generateLowerPartOfDiamond function tests --------------*/
 
 inputs = [5,lowerAngledLineGenerator];
-actualOutput = generateLowerPartOfAngledDiamond(5,lowerAngledLineGenerator);
-expectedOutput = " \\ / ";
-assert.deepEqual(actualOutput,expectedOutput);
-printLog(generateLowerPartOfAngledDiamond,inputs,expectedOutput,actualOutput);
+expectedOutput = [];
+expectedOutput.push(" \\ / ");
+testFunction(generateLowerPartOfAngledDiamond,inputs,expectedOutput);
 
 inputs = [7,lowerAngledLineGenerator];
-actualOutput = generateLowerPartOfAngledDiamond(7,lowerAngledLineGenerator);
-expectedOutput  = " \\   / \n";
-expectedOutput += "  \\ /  ";
-assert.deepEqual(actualOutput,expectedOutput);
-printLog(generateLowerPartOfAngledDiamond,inputs,expectedOutput,actualOutput);
+expectedOutput = [];
+expectedOutput.push(" \\   / ");
+expectedOutput.push("  \\ /  ");
+testFunction(generateLowerPartOfAngledDiamond,inputs,expectedOutput);
 
 /*------------------ CreateAngledDiamond function tests --------------*/
+
 inputs = [5];
-actualOutput = createAngledDiamond(5);
-expectedOutput  = "  *  \n";
-expectedOutput += " / \\ \n";
-expectedOutput += "*   *\n"
-expectedOutput += " \\ / \n";
-expectedOutput += "  *  ";
-assert.equal(actualOutput,expectedOutput);
-printLog(createAngledDiamond,inputs,expectedOutput,actualOutput);
+expectedOutput = [];
+expectedOutput.push("  *  ");
+expectedOutput.push(" / \\ ");
+expectedOutput.push("*   *");
+expectedOutput.push(" \\ / ");
+expectedOutput.push("  *  ");
+testFunction(createAngledDiamond,inputs,expectedOutput);
 
 inputs = [7];
-actualOutput = createAngledDiamond(7);
-expectedOutput  = "   *   \n";
-expectedOutput += "  / \\  \n";
-expectedOutput += " /   \\ \n"
-expectedOutput += "*     *\n"
-expectedOutput += " \\   / \n";
-expectedOutput += "  \\ /  \n";
-expectedOutput += "   *   ";
-assert.equal(actualOutput,expectedOutput);
-printLog(createAngledDiamond,inputs,expectedOutput,actualOutput);
+expectedOutput = [];
+expectedOutput.push("   *   ");
+expectedOutput.push("  / \\  ");
+expectedOutput.push(" /   \\ ");
+expectedOutput.push("*     *");
+expectedOutput.push(" \\   / ");
+expectedOutput.push("  \\ /  ");
+expectedOutput.push("   *   ");
+testFunction(createAngledDiamond,inputs,expectedOutput);
 
