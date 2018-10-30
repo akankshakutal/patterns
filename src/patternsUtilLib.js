@@ -7,6 +7,12 @@ const extractParameters = function (userArgs) {
 }
 exports.extractParameters = extractParameters;
 
+const convertToString = function(list) { 
+  let result = list.join("\n");
+  return result;
+}
+exports.convertToString = convertToString;
+
 const repeatCharacter = function (character,times) {
   let line = "";
   for (let count = 0; count < times; count++) {
