@@ -9,6 +9,15 @@ const {createFilledRect,
   generateMirrorPattern,
   generateFlipedPattern } = require('./patternUtil.js');
 
+const zipArrays = function(dataSet1,dataSet2) {
+  let length = Math.max(dataSet1.length,dataSet2.length);
+  let result = [];
+  for(let index=0; index<length; index++) {
+    result[index] = [dataSet1[index],dataSet2[index]];
+  }
+  return result;
+}
+
 const generateRectangle = function(parameters) {
   let rectangleType = rectangleTypes[parameters.type];
   let width = parameters.width;
@@ -90,6 +99,7 @@ const typesOfPattern = {
   "angled_diamond" : generateDiamond
 };
 
+exports.zipArrays = zipArrays;
 exports.generatePattern = generatePattern;
 exports.generateDiamond = generateDiamond;
 exports.generateTriangle = generateTriangle;
