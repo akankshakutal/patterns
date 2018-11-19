@@ -5,7 +5,9 @@ const {createFilledRect,
   createRightTriangle,
   createFilledDiamond,
   createHollowDiamond,
-  createAngledDiamond } = require('./patternUtil.js');
+  createAngledDiamond,
+  generateMirrorPattern,
+  generateFlipedPattern } = require('./patternUtil.js');
 
 const generateRectangle = function(parameters) {
   let rectangleType = rectangleTypes[parameters.type];
@@ -34,10 +36,20 @@ const generateDiamond = function (parameters) {
 
 const generatePattern = function(parameters) { 
   let patterns = [];
+  let requiredPattern = [];
+  let printMode = parameters[0];
+
   for(let index=1; index<parameters.length; index++) {
     let patternType = typesOfPattern[parameters[index]["type"]];
-    let line = patternType(parameters[index]);
-    patterns.push(line);
+    let generatedPattern = patternType(parameters[index]);
+    requiredPattern = generatedPattern;
+    if(printMode == "flip") {
+      requiredPattern = generateFlipedPattern(generatedPattern);
+    }
+    if(printMode == "mirror") {
+      requiredPattern = generateMirrorPattern(generatedPattern);
+    }
+    patterns.push(requiredPattern);
   }
   return patterns[0];
 }

@@ -268,7 +268,7 @@ expectedOutput.push("    *    ");
 inputs = {type : "angled", height : 10, width : 0}; 
 testFunction(lib.generateDiamond,inputs,expectedOutput);
 
-/*-------------------------- Test createPattern ----------------------------------*/
+/*-------------------------- Test generatePattern ----------------------------------*/
 
 expectedOutput  = [];
 expectedOutput.push("*****");
@@ -294,4 +294,28 @@ expectedOutput.push("  ****");
 expectedOutput.push(" *****");
 expectedOutput.push("******");
 inputs =["normal",{type : "right_triangle",height : 6, width : 0}]; 
+testFunction(lib.generatePattern,inputs,expectedOutput);
+
+expectedOutput  = [];
+expectedOutput.push("*****");
+expectedOutput.push("-----");
+inputs = ["flip",{type : "alternating_rectangle",height : 5, width : 2 }];
+testFunction(lib.generatePattern,inputs,expectedOutput);
+
+expectedOutput = [];
+expectedOutput.push("  *  ");
+expectedOutput.push(" \\ / ");
+expectedOutput.push("*   *");
+expectedOutput.push(" / \\ ");
+expectedOutput.push("  *  ");
+inputs = ["flip",{type : "angled_diamond",height : 5 ,width : 2}];
+testFunction(lib.generatePattern,inputs,expectedOutput);
+
+expectedOutput = [];
+expectedOutput.push("*****");
+expectedOutput.push("**** ");
+expectedOutput.push("***  ");
+expectedOutput.push("**   ");
+expectedOutput.push("*    ");
+inputs = ["mirror",{type : "left_triangle",height : 5}];
 testFunction(lib.generatePattern,inputs,expectedOutput);
