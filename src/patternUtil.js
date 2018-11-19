@@ -1,7 +1,3 @@
-const lineSeperator = function(list) { 
-  let result = list.join("\n");
-  return result;
-}
 
 const repeat = function (character,times) {
   let line = "";
@@ -153,7 +149,6 @@ const createAngledDiamond = function(height){
 }
 
 exports.generateLowerPartOfAngledDiamond = generateLowerPartOfAngledDiamond;
-exports.lineSeperator = lineSeperator;
 exports.createAngledDiamond = createAngledDiamond;
 exports.repeat = repeat;
 exports.generateUpperPartOfAngledDiamond = generateUpperPartOfAngledDiamond;
