@@ -50,7 +50,7 @@ const createFilledRect = function (width,height) {
   return rectangle;
 }
 const isZero = function(width,height) {
-  return width == 0 && height == 0;
+  return width == 0 || height == 0;
 }
 
 const createEmptyRect = function (width,height) {

@@ -152,6 +152,10 @@ inputs = [0,0];
 expectedOutput = [];
 testFunction(createEmptyRect,inputs,expectedOutput);
 
+inputs = [0,10];
+expectedOutput = [];
+testFunction(createEmptyRect,inputs,expectedOutput);
+
 inputs = [2,2];
 expectedOutput = [];
 expectedOutput.push("**");
