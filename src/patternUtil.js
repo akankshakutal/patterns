@@ -138,11 +138,21 @@ const createAngledDiamond = function(height){
   return diamond;
 }
 
-const generateMirror= function (source) {
+const generateMirrorPattern= function (source) {
   return source.slice().reverse();
 }
 
-exports.generateMirror = generateMirror;
+const generateFlipedPattern = function (source) {
+  let result = [];
+  for (let element of source) {
+    element = element.split("").reverse().join("");
+    result.push(element);
+  }
+  return result;
+}
+
+exports.generateFlipedPattern = generateFlipedPattern;
+exports.generateMirrorPattern = generateMirrorPattern;
 exports.createAngledDiamond = createAngledDiamond;
 exports.repeat = repeat;
 exports.createHollowDiamond = createHollowDiamond;

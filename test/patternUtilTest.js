@@ -23,7 +23,8 @@ const { repeat,
   generateLowerPartOfAngledDiamond,
   createFilledDiamond,
   createHollowDiamond,
-  generateMirror,
+  generateMirrorPattern,
+  generateFlipedPattern,
   createAngledDiamond } = require('../src/patternUtil.js');
 
 /*------------------ ExtractParameters function tests --------------*/
@@ -364,21 +365,46 @@ expectedOutput.push("  \\ /  ");
 expectedOutput.push("   *   ");
 testFunction(createAngledDiamond,inputs,expectedOutput);
 
-/*------------------ generateMirror function tests --------------*/
+/*------------------ generateMirrorPattern function tests --------------*/
 
 inputs = [[]];
 expectedOutput = [];
-testFunction(generateMirror,inputs,expectedOutput);
+testFunction(generateMirrorPattern,inputs,expectedOutput);
 
 inputs = [["*"]];
 expectedOutput = [];
 expectedOutput.push("*");
-testFunction(generateMirror,inputs,expectedOutput);
+testFunction(generateMirrorPattern,inputs,expectedOutput);
 
 inputs = [["***","**","*"]];
 expectedOutput = [];
 expectedOutput.push("*");
 expectedOutput.push("**");
 expectedOutput.push("***");
-testFunction(generateMirror,inputs,expectedOutput);
+testFunction(generateMirrorPattern,inputs,expectedOutput);
+
+/*------------------ generateFlipedPattern function tests --------------*/
+
+inputs = [[]];
+expectedOutput = [];
+testFunction(generateFlipedPattern,inputs,expectedOutput);
+
+inputs = [["*"]];
+expectedOutput = [];
+expectedOutput.push("*");
+testFunction(generateFlipedPattern,inputs,expectedOutput);
+
+inputs = [["***","**","*"]];
+expectedOutput = [];
+expectedOutput.push("***");
+expectedOutput.push("**");
+expectedOutput.push("*");
+testFunction(generateFlipedPattern,inputs,expectedOutput);
+
+inputs = [["  *  ","/***\\","*****"]];
+expectedOutput = [];
+expectedOutput.push("  *  ");
+expectedOutput.push("\\***/");
+expectedOutput.push("*****");
+testFunction(generateFlipedPattern,inputs,expectedOutput);
 
