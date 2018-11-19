@@ -60,7 +60,16 @@ const generatePattern = function(parameters) {
     }
     patterns.push(requiredPattern);
   }
-  return patterns[0];
+  let mergedPattern = [];
+  patterns = patterns.reduce(zipArrays);
+  if (parameters.length == 2) {
+    return patterns;
+  }
+  for (let line of patterns) {
+    line = line.join(" ");
+    mergedPattern.push(line);
+  }
+  return mergedPattern;
 }
 
 const rectangleTypes = { 

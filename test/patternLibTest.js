@@ -319,3 +319,32 @@ expectedOutput.push("**   ");
 expectedOutput.push("*    ");
 inputs = ["mirror",{type : "left_triangle",height : 5}];
 testFunction(lib.generatePattern,inputs,expectedOutput);
+
+expectedOutput  = [];
+expectedOutput.push("***** *    ");
+expectedOutput.push("----- **   ");
+expectedOutput.push("***** ***  ");
+expectedOutput.push("----- **** ");
+expectedOutput.push("***** *****");
+inputs = ["normal",{type : "alternating_rectangle",height :5, width : 5 },{type : "left_triangle", height : 5 }];
+testFunction(lib.generatePattern,inputs,expectedOutput);
+
+
+expectedOutput  = [];
+expectedOutput.push("*       *  ");
+expectedOutput.push("**     *** ");
+expectedOutput.push("***   *****");
+expectedOutput.push("****   *** ");
+expectedOutput.push("*****   *  ");
+inputs = ["normal",{type : "left_triangle",height :5, width : 5 },{type : "filled_diamond", height : 5 }];
+testFunction(lib.generatePattern,inputs,expectedOutput);
+
+
+expectedOutput  = [];
+expectedOutput.push("*****     *");
+expectedOutput.push("*****    **");
+expectedOutput.push("*****   ***");
+expectedOutput.push("*****  ****");
+expectedOutput.push("***** *****");
+inputs = ["normal",{type : "filled_rectangle",height :5, width : 5 },{type : "right_triangle", height : 5 }];
+testFunction(lib.generatePattern,inputs,expectedOutput);
