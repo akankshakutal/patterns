@@ -1,10 +1,9 @@
-
 const repeat = function (character,times) {
-  let line = "";
+  let repeatedCharacter = "";
   for (let count = 0; count < times; count++) {
-    line = line + character;
+    repeatedCharacter = repeatedCharacter + character;
   }
-  return line;
+  return repeatedCharacter;
 }
 
 const rightJustifyLine = function(text, width) {
@@ -20,7 +19,7 @@ const centerJustifyLine = function(text, width) {
 }
 
 const leftJustifyLine = function(text, width) {
-  let numberOfSpaces = (width - text.length);
+  let numberOfSpaces = width - text.length;
   let spaces = repeat(' ', numberOfSpaces);
   return text + spaces;
 }
