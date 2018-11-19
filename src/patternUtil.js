@@ -49,11 +49,13 @@ const createFilledRect = function (width,height) {
   let rectangle = new Array(height).fill(starLineGenerator(width));
   return rectangle;
 }
+const isZero = function(width,height) {
+  return width == 0 && height == 0;
+}
 
 const createEmptyRect = function (width,height) {
   let rectangle = [];
-  let isZero = !(width > 0 && height > 0)
-  if(isZero) {
+  if( isZero(width,height) ) {
     return rectangle;
   }
   rectangle.push(starLineGenerator(width));
