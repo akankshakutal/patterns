@@ -92,70 +92,54 @@ const createRightTriangle = function (height) {
   return createTriangle(height,rightJustifyLine,starLineGenerator);
 }
 
-const generateUpperPartOfDiamond = function (height,lineGenerator) {
-  let upperPart = [];
-  for (let rowLength=1; rowLength<height; rowLength+=2) {
-    let line = lineGenerator(rowLength);
-    let centerJustifiedLine = centerJustifyLine(line,height);
-    upperPart.push(centerJustifiedLine);
-  }
-  return upperPart;
-}
-
-const generateLowerPartOfDiamond = function(height,lineGenerator) {
-  let lowerPart = [];
-   for (let rowLength=height; rowLength>=1; rowLength-=2) {
-     let line = lineGenerator(rowLength);
-     let centerJustifiedLine = centerJustifyLine(line,height);
-     lowerPart.push(centerJustifiedLine);
-  }
-  return lowerPart;
-}
-
-const createFilledDiamond = function(height) {
-  let diamond = [];
-  diamond = diamond.concat(generateUpperPartOfDiamond(height,starLineGenerator));
-  diamond = diamond.concat(generateLowerPartOfDiamond(height,starLineGenerator));
-  return diamond;
-}
-
-const createHollowDiamond = function(height) {
-  let diamond = [];
-  diamond = diamond.concat(generateUpperPartOfDiamond(height,hollowLineGenerator));
-  diamond = diamond.concat(generateLowerPartOfDiamond(height,hollowLineGenerator));
-  return diamond;
-}
-
-const generateUpperPartOfAngledDiamond = function (tipChar,height,lineGenerator) {
+const generateUpperPartOfDiamond = function (tipChar,height,lineGenerator) {
   let upperPart = [];
   upperPart.push(centerJustifyLine(tipChar,height));
   for (let rowLength=3; rowLength<height-1; rowLength+=2) {
-    upperPart.push(centerJustifyLine(lineGenerator(rowLength),height));
+    let line = lineGenerator(rowLength);
+    let centerJustifidLine = centerJustifyLine(line,height);
+    upperPart.push(centerJustifidLine);
   }
   return upperPart;
 }
 
-const generateLowerPartOfAngledDiamond = function(tipChar,height,lineGenerator) {
+const generateLowerPartOfDiamond = function(tipChar,height,lineGenerator) {
   let lowerPart = [];
   for (let rowLength=height-2; rowLength>1; rowLength-=2) {
-    lowerPart.push(centerJustifyLine(lineGenerator(rowLength),height));
+    let line = lineGenerator(rowLength);
+    let centerJustifidLine = centerJustifyLine(line,height);
+    lowerPart.push(centerJustifidLine);
   }
   lowerPart.push(centerJustifyLine(tipChar,height));
   return lowerPart;
 }
 
-const createAngledDiamond = function(height){
+const createFilledDiamond = function(height) {
   let diamond = [];
-  diamond = diamond.concat(generateUpperPartOfAngledDiamond("*",height,upperAngledLineGenerator));
-  diamond = diamond.concat(hollowLineGenerator(height));
-  diamond = diamond.concat(generateLowerPartOfAngledDiamond("*",height,lowerAngledLineGenerator));
+  diamond = diamond.concat(generateUpperPartOfDiamond("*",height,starLineGenerator));
+  diamond = diamond.concat(starLineGenerator(height));
+  diamond = diamond.concat(generateLowerPartOfDiamond("*",height,starLineGenerator));
   return diamond;
 }
 
-exports.generateLowerPartOfAngledDiamond = generateLowerPartOfAngledDiamond;
+const createHollowDiamond = function(height) {
+  let diamond = [];
+  diamond = diamond.concat(generateUpperPartOfDiamond("*",height,hollowLineGenerator));
+  diamond = diamond.concat(hollowLineGenerator(height));
+  diamond = diamond.concat(generateLowerPartOfDiamond("*",height,hollowLineGenerator));
+  return diamond;
+}
+
+const createAngledDiamond = function(height){
+  let diamond = [];
+  diamond = diamond.concat(generateUpperPartOfDiamond("*",height,upperAngledLineGenerator));
+  diamond = diamond.concat(hollowLineGenerator(height));
+  diamond = diamond.concat(generateLowerPartOfDiamond("*",height,lowerAngledLineGenerator));
+  return diamond;
+}
+
 exports.createAngledDiamond = createAngledDiamond;
 exports.repeat = repeat;
-exports.generateUpperPartOfAngledDiamond = generateUpperPartOfAngledDiamond;
 exports.createHollowDiamond = createHollowDiamond;
 exports.createFilledDiamond = createFilledDiamond;
 exports.generateLowerPartOfDiamond = generateLowerPartOfDiamond;
