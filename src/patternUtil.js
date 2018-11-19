@@ -95,7 +95,9 @@ const createRightTriangle = function (height) {
 const generateUpperPartOfDiamond = function (height,lineGenerator) {
   let upperPart = [];
   for (let rowLength=1; rowLength<height; rowLength+=2) {
-    upperPart.push(centerJustifyLine(lineGenerator(rowLength),height));
+    let line = lineGenerator(rowLength);
+    let centerJustifiedLine = centerJustifyLine(line,height);
+    upperPart.push(centerJustifiedLine);
   }
   return upperPart;
 }
@@ -103,7 +105,9 @@ const generateUpperPartOfDiamond = function (height,lineGenerator) {
 const generateLowerPartOfDiamond = function(height,lineGenerator) {
   let lowerPart = [];
    for (let rowLength=height; rowLength>=1; rowLength-=2) {
-    lowerPart.push(centerJustifyLine(lineGenerator(rowLength),height));
+     let line = lineGenerator(rowLength);
+     let centerJustifiedLine = centerJustifyLine(line,height);
+     lowerPart.push(centerJustifiedLine);
   }
   return lowerPart;
 }
