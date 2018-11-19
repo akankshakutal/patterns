@@ -1,11 +1,3 @@
-const extractParameters = function (userArgs) { 
-  let parameters = {};
-  parameters.type = userArgs[0];
-  parameters.height = +userArgs[1];
-  parameters.width = +userArgs[2];
-  return parameters;
-}
-
 const lineSeperator = function(list) { 
   let result = list.join("\n");
   return result;
