@@ -1,4 +1,4 @@
-const { zipArrays } = require('../arrayAssignment/lib/zipArrays.js');
+const { zipArrays } = require("./parser.js");
 
 const justify = function(text) { 
   let noOfSpaces = 25 - text.length;
