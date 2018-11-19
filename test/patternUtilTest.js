@@ -23,6 +23,7 @@ const { repeat,
   generateLowerPartOfAngledDiamond,
   createFilledDiamond,
   createHollowDiamond,
+  generateMirror,
   createAngledDiamond } = require('../src/patternUtil.js');
 
 /*------------------ ExtractParameters function tests --------------*/
@@ -362,4 +363,22 @@ expectedOutput.push(" \\   / ");
 expectedOutput.push("  \\ /  ");
 expectedOutput.push("   *   ");
 testFunction(createAngledDiamond,inputs,expectedOutput);
+
+/*------------------ generateMirror function tests --------------*/
+
+inputs = [[]];
+expectedOutput = [];
+testFunction(generateMirror,inputs,expectedOutput);
+
+inputs = [["*"]];
+expectedOutput = [];
+expectedOutput.push("*");
+testFunction(generateMirror,inputs,expectedOutput);
+
+inputs = [["***","**","*"]];
+expectedOutput = [];
+expectedOutput.push("*");
+expectedOutput.push("**");
+expectedOutput.push("***");
+testFunction(generateMirror,inputs,expectedOutput);
 
