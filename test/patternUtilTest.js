@@ -345,28 +345,32 @@ testFunction(createHollowDiamond,inputs,expectedOutput);
 
 /*------------------ generateUpperPartOfAngledDiamond function tests --------------*/
 
-inputs = [5,upperAngledLineGenerator];
+inputs = ["*",5,upperAngledLineGenerator];
 expectedOutput = [];
+expectedOutput.push("  *  ");
 expectedOutput.push(" / \\ ");
 testFunction(generateUpperPartOfAngledDiamond,inputs,expectedOutput);
 
-inputs = [7,upperAngledLineGenerator];
+inputs = ["#",7,upperAngledLineGenerator];
 expectedOutput = [];
+expectedOutput.push("   #   ");
 expectedOutput.push("  / \\  ");
 expectedOutput.push(" /   \\ ");
 testFunction(generateUpperPartOfAngledDiamond,inputs,expectedOutput);
 
 /*------------------ generateLowerPartOfDiamond function tests --------------*/
 
-inputs = [5,lowerAngledLineGenerator];
+inputs = ["*",5,lowerAngledLineGenerator];
 expectedOutput = [];
 expectedOutput.push(" \\ / ");
+expectedOutput.push("  *  ");
 testFunction(generateLowerPartOfAngledDiamond,inputs,expectedOutput);
 
-inputs = [7,lowerAngledLineGenerator];
+inputs = ["*",7,lowerAngledLineGenerator];
 expectedOutput = [];
 expectedOutput.push(" \\   / ");
 expectedOutput.push("  \\ /  ");
+expectedOutput.push("   *   ");
 testFunction(generateLowerPartOfAngledDiamond,inputs,expectedOutput);
 
 /*------------------ CreateAngledDiamond function tests --------------*/
