@@ -167,29 +167,3 @@ expectedOutput.push("  ***  ");
 expectedOutput.push("   *   ");
 testFunction(generateLowerPartOfDiamond,inputs,expectedOutput);
 
-
-/*------------------ generateFlipedPattern function tests --------------*/
-
-inputs = [[]];
-expectedOutput = [];
-testFunction(generateFlipedPattern,inputs,expectedOutput);
-
-inputs = [["*"]];
-expectedOutput = [];
-expectedOutput.push("*");
-testFunction(generateFlipedPattern,inputs,expectedOutput);
-
-inputs = [["***","**","*"]];
-expectedOutput = [];
-expectedOutput.push("***");
-expectedOutput.push("**");
-expectedOutput.push("*");
-testFunction(generateFlipedPattern,inputs,expectedOutput);
-
-inputs = [["  *  ","/***\\","*****"]];
-expectedOutput = [];
-expectedOutput.push("  *  ");
-expectedOutput.push("\\***/");
-expectedOutput.push("*****");
-testFunction(generateFlipedPattern,inputs,expectedOutput);
-

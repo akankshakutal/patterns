@@ -81,16 +81,6 @@ const generateLowerPartOfDiamond = function(tipChar,height,lineGenerator) {
   return lowerPart;
 }
 
-const generateFlipedPattern = function (source) {
-  let result = [];
-  for (let element of source) {
-    element = element.split("").reverse().join("");
-    result.push(element);
-  }
-  return result;
-}
-
-exports.generateFlipedPattern = generateFlipedPattern;
 exports.repeat = repeat;
 exports.isZero = isZero;
 exports.generateLowerPartOfDiamond = generateLowerPartOfDiamond;
