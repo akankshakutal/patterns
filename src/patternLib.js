@@ -121,7 +121,6 @@ const generatePattern = function(parameters) {
   let patterns = [];
   let requiredPattern = [];
   let printMode = parameters[0];
-
   for(let index=1; index<parameters.length; index++) {
     let patternType = typesOfPattern[parameters[index]["type"]];
     let generatedPattern = patternType(parameters[index]);
@@ -153,14 +152,14 @@ const rectangleTypes = {
   'filled' : createFilledRect,
   'empty' : createEmptyRect,
   'alternating' : createAlternateRect,
-}
+};
 
 const triangleTypes = {
   "left_triangle" : createLeftTriangle,
   "right_triangle" : createRightTriangle,
   "left" : createLeftTriangle,
   "right" : createRightTriangle,
-}
+};
 
 const diamondTypes = {
   "filled_diamond" : createFilledDiamond,
@@ -169,7 +168,7 @@ const diamondTypes = {
   "filled" : createFilledDiamond,
   "hollow" : createHollowDiamond,
   "angled" : createAngledDiamond
-}
+};
 
 const typesOfPattern = {
   "filled_rectangle" : generateRectangle,

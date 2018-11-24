@@ -58,7 +58,6 @@ const createTriangle = function(height,justifier,lineGenerator) {
   return triangle;
 }
 
-
 const generateUpperPartOfDiamond = function (tipChar,height,lineGenerator) {
   let upperPart = [];
   upperPart.push(centerJustifyLine(tipChar,height));
@@ -83,16 +82,16 @@ const generateLowerPartOfDiamond = function(tipChar,height,lineGenerator) {
 
 exports.repeat = repeat;
 exports.isZero = isZero;
-exports.generateLowerPartOfDiamond = generateLowerPartOfDiamond;
-exports.generateUpperPartOfDiamond = generateUpperPartOfDiamond;
-exports.createTriangle = createTriangle;
-exports.createLineGenerator = createLineGenerator;
-exports.rightJustifyLine = rightJustifyLine;
-exports.centerJustifyLine = centerJustifyLine;
-exports.leftJustifyLine = leftJustifyLine;
 exports.createLine = createLine;
+exports.createLineGenerator = createLineGenerator;
 exports.starLineGenerator = starLineGenerator;
 exports.dashLineGenerator = dashLineGenerator;
 exports.hollowLineGenerator = hollowLineGenerator;
 exports.upperAngledLineGenerator = upperAngledLineGenerator;
 exports.lowerAngledLineGenerator = lowerAngledLineGenerator;
+exports.rightJustifyLine = rightJustifyLine;
+exports.centerJustifyLine = centerJustifyLine;
+exports.leftJustifyLine = leftJustifyLine;
+exports.createTriangle = createTriangle;
+exports.generateLowerPartOfDiamond = generateLowerPartOfDiamond;
+exports.generateUpperPartOfDiamond = generateUpperPartOfDiamond;

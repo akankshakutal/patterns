@@ -6,17 +6,16 @@ const { repeat,
   leftJustifyLine,
   centerJustifyLine,
   starLineGenerator,
+  createLineGenerator,
   hollowLineGenerator,
   dashLineGenerator,
   upperAngledLineGenerator,
   lowerAngledLineGenerator,
-  createLineGenerator,
   createTriangle,
   generateUpperPartOfDiamond,
-  generateLowerPartOfDiamond,
-  generateFlipedPattern } = require('../src/patternUtil.js');
+  generateLowerPartOfDiamond } = require('../src/patternUtil.js');
 
-/*------------------ ExtractParameters function tests --------------*/
+/*------------------ Test ExtractParameters function --------------*/
 
 const testExtractParameters = function(inputs,expectedOutput) { 
   let actualOutput = extractParameters(inputs);
@@ -37,9 +36,9 @@ inputs = ["Empty",9,-3];
 expectedOutput = {type : "Empty" , height : 9 , width : -3};
 testExtractParameters(inputs,expectedOutput);
 
-/*------------------ RepeatCharacter function tests --------------*/
+/*------------------ Test RepeatCharacter function --------------*/
 
-const testFunction = function(functionName,inputs,expectedOutput) { 
+const test = function(functionName,inputs,expectedOutput) { 
   actualOutput = functionName(inputs[0],inputs[1],inputs[2]);
   assert.deepEqual(actualOutput,expectedOutput);
   printLog(functionName,inputs,expectedOutput,actualOutput);
@@ -47,50 +46,50 @@ const testFunction = function(functionName,inputs,expectedOutput) {
 
 inputs = ["*",0];
 expectedOutput = "";
-testFunction(repeat,inputs,expectedOutput);
+test(repeat,inputs,expectedOutput);
 
 inputs = ["-",1];
 expectedOutput = "";
 expectedOutput = "-";
-testFunction(repeat,inputs,expectedOutput);
+test(repeat,inputs,expectedOutput);
 
 inputs = ["#",5];
 expectedOutput = "#####";
-testFunction(repeat,inputs,expectedOutput);
+test(repeat,inputs,expectedOutput);
 
 inputs = ["*",2];
 expectedOutput = "**";
-testFunction(repeat,inputs,expectedOutput);
+test(repeat,inputs,expectedOutput);
 
-/*------------------ RightJustifyLine function tests --------------*/
+/*------------------ Test RightJustifyLine function --------------*/
 
 inputs = ["Foo",5];
 expectedOutput = "  Foo";
-testFunction(rightJustifyLine,inputs,expectedOutput);
+test(rightJustifyLine,inputs,expectedOutput);
 
 inputs = ["Omkar",0];
 expectedOutput = "Omkar";
-testFunction(rightJustifyLine,inputs,expectedOutput);
+test(rightJustifyLine,inputs,expectedOutput);
 
 inputs = ["Ok",3];
 expectedOutput = " Ok";
-testFunction(rightJustifyLine,inputs,expectedOutput);
+test(rightJustifyLine,inputs,expectedOutput);
 
-/*------------------ LeftJustifyLine function tests --------------*/
+/*------------------ Test LeftJustifyLine function --------------*/
 
 inputs = ["Foo",5];
 expectedOutput = "Foo  ";
-testFunction(leftJustifyLine,inputs,expectedOutput);
+test(leftJustifyLine,inputs,expectedOutput);
 
 inputs = ["Omkar",0];
 expectedOutput = "Omkar";
-testFunction(leftJustifyLine,inputs,expectedOutput);
+test(leftJustifyLine,inputs,expectedOutput);
 
 inputs = ["Ok",3];
 expectedOutput = "Ok ";
-testFunction(leftJustifyLine,inputs,expectedOutput);
+test(leftJustifyLine,inputs,expectedOutput);
 
-/*------------------ CreateLineGenerator function tests --------------*/
+/*------------------ Test CreateLineGenerator function --------------*/
 
 const testCreateLineGenerator = function(inputs,expectedOutput) { 
   let actualOutput = createLineGenerator(inputs[0],inputs[1],inputs[2]);
@@ -111,22 +110,22 @@ inputs = ["#"," ","#"];
 expectedOutput = "#   #";
 testCreateLineGenerator(inputs,expectedOutput);
 
-/*------------------ CreateTriangle function tests --------------*/
+/*------------------ Test CreateTriangle function --------------*/
 
 inputs = [0,leftJustifyLine,starLineGenerator];
 expectedOutput = [];
-testFunction(createTriangle,inputs,expectedOutput);
+test(createTriangle,inputs,expectedOutput);
 
 inputs = [1,leftJustifyLine,dashLineGenerator];
 expectedOutput = [];
 expectedOutput.push("-");
-testFunction(createTriangle,inputs,expectedOutput);
+test(createTriangle,inputs,expectedOutput);
 
 inputs = [2,leftJustifyLine,dashLineGenerator];
 expectedOutput = [];
 expectedOutput.push("- ");
 expectedOutput.push("--");
-testFunction(createTriangle,inputs,expectedOutput);
+test(createTriangle,inputs,expectedOutput);
 
 inputs = [5,leftJustifyLine,dashLineGenerator];
 expectedOutput = [];
@@ -135,35 +134,35 @@ expectedOutput.push("--   ");
 expectedOutput.push("---  ");
 expectedOutput.push("---- ");
 expectedOutput.push("-----");
-testFunction(createTriangle,inputs,expectedOutput);
+test(createTriangle,inputs,expectedOutput);
 
-/*------------------ generateUpperPartOfDiamond function tests --------------*/
+/*------------------ Test generateUpperPartOfDiamond function --------------*/
 
 inputs = ["*",5,starLineGenerator];
 expectedOutput = [];
 expectedOutput.push("  *  ");
 expectedOutput.push(" *** ");
-testFunction(generateUpperPartOfDiamond,inputs,expectedOutput);
+test(generateUpperPartOfDiamond,inputs,expectedOutput);
 
 inputs = ["*",7,starLineGenerator];
 expectedOutput = [];
 expectedOutput.push("   *   ");
 expectedOutput.push("  ***  ");
 expectedOutput.push(" ***** ");
-testFunction(generateUpperPartOfDiamond,inputs,expectedOutput);
+test(generateUpperPartOfDiamond,inputs,expectedOutput);
 
-/*------------------ generateLowerPartOfDiamond function tests --------------*/
+/*------------------ Test generateLowerPartOfDiamond function --------------*/
 
 inputs = ["*",5,starLineGenerator];
 expectedOutput = [];
 expectedOutput.push(" *** ");
 expectedOutput.push("  *  ");
-testFunction(generateLowerPartOfDiamond,inputs,expectedOutput);
+test(generateLowerPartOfDiamond,inputs,expectedOutput);
 
 inputs = ["*",7,starLineGenerator];
 expectedOutput = [];
 expectedOutput.push(" ***** ");
 expectedOutput.push("  ***  ");
 expectedOutput.push("   *   ");
-testFunction(generateLowerPartOfDiamond,inputs,expectedOutput);
+test(generateLowerPartOfDiamond,inputs,expectedOutput);
 
