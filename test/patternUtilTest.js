@@ -1,7 +1,8 @@
 const assert = require("assert");
 const { printLog } = require("../testFramework.js");
-const { extractParameters } = require("../parser.js");
 const { repeat,
+  isZero,
+  createLine,
   rightJustifyLine,
   leftJustifyLine,
   centerJustifyLine,
@@ -15,31 +16,10 @@ const { repeat,
   generateUpperPartOfDiamond,
   generateLowerPartOfDiamond } = require('../src/patternUtil.js');
 
-/*------------------ Test ExtractParameters function --------------*/
-
-const testExtractParameters = function(inputs,expectedOutput) { 
-  let actualOutput = extractParameters(inputs);
-  assert.deepEqual(actualOutput,expectedOutput);
-}
-
-let inputs,expectedOutput;
-
-inputs = ["Filled",5,6];
-expectedOutput = {type : "Filled" , height : 5 , width : 6};
-testExtractParameters(inputs,expectedOutput);
-
-inputs = ["Empty",9,-3];
-expectedOutput = {type : "Empty" , height : 9 , width : -3};
-testExtractParameters(inputs,expectedOutput);
-
-inputs = ["Empty",9,-3];
-expectedOutput = {type : "Empty" , height : 9 , width : -3};
-testExtractParameters(inputs,expectedOutput);
-
 /*------------------ Test RepeatCharacter function --------------*/
 
 const test = function(functionName,inputs,expectedOutput) { 
-  actualOutput = functionName(inputs[0],inputs[1],inputs[2]);
+  actualOutput = functionName(inputs[0],inputs[1],inputs[2],inputs[3]);
   assert.deepEqual(actualOutput,expectedOutput);
   printLog(functionName,inputs,expectedOutput,actualOutput);
 }
@@ -60,6 +40,42 @@ test(repeat,inputs,expectedOutput);
 inputs = ["*",2];
 expectedOutput = "**";
 test(repeat,inputs,expectedOutput);
+
+/*------------------ Test createLine function --------------*/
+
+inputs = ["*"," ","*",5];
+expectedOutput = "*   *";
+test(createLine,inputs,expectedOutput);
+
+inputs = ["$","-","$",0];
+expectedOutput = "";
+test(createLine,inputs,expectedOutput);
+
+inputs = ["*"," ","*",1];
+expectedOutput = "*";
+test(createLine,inputs,expectedOutput);
+
+inputs = ["*","-","*",5];
+expectedOutput = "*---*";
+test(createLine,inputs,expectedOutput);
+
+/*------------------ Test isZero function --------------*/
+
+inputs = [];
+expectedOutput = false;
+test(isZero,inputs,expectedOutput);
+
+inputs = [1,1];
+expectedOutput = false;
+test(isZero,inputs,expectedOutput);
+
+inputs = [-1,-3];
+expectedOutput = false;
+test(isZero,inputs,expectedOutput);
+
+inputs = [0,0];
+expectedOutput = true;
+test(isZero,inputs,expectedOutput);
 
 /*------------------ Test RightJustifyLine function --------------*/
 

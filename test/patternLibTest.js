@@ -19,10 +19,30 @@ const testCreateFunction = function(functionName,inputs,expectedOutput) {
 
 console.log("-------------------- Test Report ----------------------");
 
+let inputs = [[],[]];
+let expectedOutput = [];
+testCreateFunction(lib.zipArrays,inputs,expectedOutput);
+
+inputs = [[1],[1]];
+expectedOutput = [[1,1]];
+testCreateFunction(lib.zipArrays,inputs,expectedOutput);
+
+inputs = [[1,2,3,4],[4,3,2,1]];
+expectedOutput = [[1,4],[2,3],[3,2],[4,1]];
+testCreateFunction(lib.zipArrays,inputs,expectedOutput);
+
+inputs = [[1,2,3,4],[1,2,3]];
+expectedOutput = [[1,1],[2,2],[3,3],[4,undefined]];
+testCreateFunction(lib.zipArrays,inputs,expectedOutput);
+
+inputs = [[1,2,3,4],[1,2,3,4,5]];
+expectedOutput = [[1,1],[2,2],[3,3],[4,4],[undefined,5]];
+testCreateFunction(lib.zipArrays,inputs,expectedOutput);
+
 /*------------------------ Test createFilledRect Function ----------------------------*/
 
-let inputs = [0,0];
-let expectedOutput = [];
+inputs = [0,0];
+expectedOutput = [];
 testCreateFunction(lib.createFilledRect,inputs,expectedOutput);
 
 inputs = [1,1];
