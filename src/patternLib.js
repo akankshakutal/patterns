@@ -1,5 +1,9 @@
 const { starLineGenerator,
-  createEmptyRect,
+  hollowLineGenerator,
+  dashLineGenerator,
+  upperAngledLineGenerator,
+  lowerAngledLineGenerator,
+  isZero,
   createAlternateRect,
   createLeftTriangle,
   createRightTriangle,
@@ -20,6 +24,19 @@ const zipArrays = function(dataSet1,dataSet2) {
 
 const createFilledRect = function (width,height) {
   let rectangle = new Array(height).fill(starLineGenerator(width));
+  return rectangle;
+}
+
+const createEmptyRect = function (width,height) {
+  let rectangle = [];
+  if( isZero(width,height) ) {
+    return rectangle;
+  }
+  rectangle.push(starLineGenerator(width));
+  for(let row = 1; row < height-1; row++) {
+    rectangle.push(hollowLineGenerator(width));
+  }
+  rectangle.push(starLineGenerator(width));
   return rectangle;
 }
 
@@ -119,3 +136,4 @@ exports.generateDiamond = generateDiamond;
 exports.generateTriangle = generateTriangle;
 exports.generateRectangle = generateRectangle;
 exports.createFilledRect = createFilledRect;
+exports.createEmptyRect = createEmptyRect;

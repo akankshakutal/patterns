@@ -39,6 +39,29 @@ expectedOutput.push("*****");
 expectedOutput.push("*****");
 testCreateFunction(lib.createFilledRect,inputs,expectedOutput);
 
+inputs = [0,0];
+expectedOutput = [];
+testCreateFunction(lib.createEmptyRect,inputs,expectedOutput);
+
+inputs = [0,10];
+expectedOutput = [];
+testCreateFunction(lib.createEmptyRect,inputs,expectedOutput);
+
+inputs = [2,2];
+expectedOutput = [];
+expectedOutput.push("**");
+expectedOutput.push("**");
+testCreateFunction(lib.createEmptyRect,inputs,expectedOutput);
+
+inputs = [5,5];
+expectedOutput =  [];
+expectedOutput.push("*****");
+expectedOutput.push("*   *");
+expectedOutput.push("*   *");
+expectedOutput.push("*   *");
+expectedOutput.push("*****");
+testCreateFunction(lib.createEmptyRect,inputs,expectedOutput);
+
 expectedOutput  = ["**","**"];
 inputs = {type : "filled",height : 2, width : 2};
 testFunction(lib.generateRectangle,inputs,expectedOutput);

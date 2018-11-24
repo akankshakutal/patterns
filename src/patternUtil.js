@@ -49,21 +49,8 @@ const isZero = function(width,height) {
   return width == 0 || height == 0;
 }
 
-const createEmptyRect = function (width,height) {
+const createAlternateRect = function(width,height) {
   let rectangle = [];
-  if( isZero(width,height) ) {
-    return rectangle;
-  }
-  rectangle.push(starLineGenerator(width));
-  for(let row = 1; row < height-1; row++) {
-    rectangle.push(hollowLineGenerator(width));
-  }
-    rectangle.push(starLineGenerator(width));
-    return rectangle;
-}
-
-  const createAlternateRect = function(width,height) {
-    let rectangle = [];
   let lineGenerators = [starLineGenerator,dashLineGenerator];
   for(let row=0; row<height; row++) {
     rectangle.push(lineGenerators[row%2](width));
@@ -151,6 +138,7 @@ exports.generateFlipedPattern = generateFlipedPattern;
 exports.generateMirrorPattern = generateMirrorPattern;
 exports.createAngledDiamond = createAngledDiamond;
 exports.repeat = repeat;
+exports.isZero = isZero;
 exports.createHollowDiamond = createHollowDiamond;
 exports.createFilledDiamond = createFilledDiamond;
 exports.generateLowerPartOfDiamond = generateLowerPartOfDiamond;
@@ -158,7 +146,6 @@ exports.generateUpperPartOfDiamond = generateUpperPartOfDiamond;
 exports.createRightTriangle = createRightTriangle;
 exports.createLeftTriangle = createLeftTriangle;
 exports.createTriangle = createTriangle;
-exports.createEmptyRect = createEmptyRect;
 exports.createAlternateRect = createAlternateRect;
 exports.createLineGenerator = createLineGenerator;
 exports.rightJustifyLine = rightJustifyLine;

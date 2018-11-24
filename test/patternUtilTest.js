@@ -122,31 +122,6 @@ inputs = ["#"," ","#"];
 expectedOutput = "#   #";
 testCreateLineGenerator(inputs,expectedOutput);
 
-/*------------------ createEmptyRect function tests --------------*/
-
-inputs = [0,0];
-expectedOutput = [];
-testFunction(createEmptyRect,inputs,expectedOutput);
-
-inputs = [0,10];
-expectedOutput = [];
-testFunction(createEmptyRect,inputs,expectedOutput);
-
-inputs = [2,2];
-expectedOutput = [];
-expectedOutput.push("**");
-expectedOutput.push("**");
-testFunction(createEmptyRect,inputs,expectedOutput);
-
-inputs = [5,5];
-expectedOutput =  [];
-expectedOutput.push("*****");
-expectedOutput.push("*   *");
-expectedOutput.push("*   *");
-expectedOutput.push("*   *");
-expectedOutput.push("*****");
-testFunction(createEmptyRect,inputs,expectedOutput);
-
 /*------------------ createAlternateRect function tests --------------*/
 
 inputs = [0,0];
