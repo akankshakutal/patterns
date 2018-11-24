@@ -1,0 +1,6 @@
+filled_rectangle|20|7|left_triangle|7
+left_triangle|7|filled_rectangle|20|7
+flip|left_triangle|6|left_triangle|6
+flip|left_triangle|6|right_triangle|6
+mirror|right_triangle|6|left_triangle|6
+

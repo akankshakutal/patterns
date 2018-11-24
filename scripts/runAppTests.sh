@@ -6,3 +6,4 @@
 
 ./scripts/runTest.sh ./createDiamond.js ./app_test_data/inputFiles/allInputsForDiamond ./app_test_data/outputFiles/allOutputsForDiamond
 
+./scripts/runTest.sh ./createPattern.js ./app_test_data/inputFiles/allinputsForMultiplePatterns ./app_test_data/outputFiles/allOutputsForMultiplePatterns
