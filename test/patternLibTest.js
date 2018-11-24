@@ -9,8 +9,38 @@ const testFunction = function(functionName,inputs,expectedOutput) {
   printLog(functionName,inputs,expectedOutput,actualOutput);
 }
 
-let expectedOutput  = ["**","**"];
-let inputs = {type : "filled",height : 2, width : 2};
+const testCreateFunction = function(functionName,inputs,expectedOutput) { 
+  let actualOutput = functionName(inputs[0],inputs[1]);
+  assert.deepEqual(actualOutput,expectedOutput);
+  printLog(functionName,inputs,expectedOutput,actualOutput);
+}
+
+let inputs = [0,0];
+let expectedOutput = [];
+testCreateFunction(lib.createFilledRect,inputs,expectedOutput);
+
+inputs = [1,1];
+expectedOutput = [];
+expectedOutput.push("*");
+testCreateFunction(lib.createFilledRect,inputs,expectedOutput);
+
+inputs = [2,2];
+expectedOutput = [];
+expectedOutput.push("**");
+expectedOutput.push("**");
+testCreateFunction(lib.createFilledRect,inputs,expectedOutput);
+
+inputs = [5,5];
+expectedOutput = [];
+expectedOutput.push("*****");
+expectedOutput.push("*****");
+expectedOutput.push("*****");
+expectedOutput.push("*****");
+expectedOutput.push("*****");
+testCreateFunction(lib.createFilledRect,inputs,expectedOutput);
+
+expectedOutput  = ["**","**"];
+inputs = {type : "filled",height : 2, width : 2};
 testFunction(lib.generateRectangle,inputs,expectedOutput);
 
 expectedOutput  = [];

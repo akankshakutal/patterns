@@ -1,4 +1,4 @@
-const {createFilledRect,
+const { starLineGenerator,
   createEmptyRect,
   createAlternateRect,
   createLeftTriangle,
@@ -16,6 +16,11 @@ const zipArrays = function(dataSet1,dataSet2) {
     result[index] = [dataSet1[index],dataSet2[index]];
   }
   return result;
+}
+
+const createFilledRect = function (width,height) {
+  let rectangle = new Array(height).fill(starLineGenerator(width));
+  return rectangle;
 }
 
 const generateRectangle = function(parameters) {
@@ -113,3 +118,4 @@ exports.generatePattern = generatePattern;
 exports.generateDiamond = generateDiamond;
 exports.generateTriangle = generateTriangle;
 exports.generateRectangle = generateRectangle;
+exports.createFilledRect = createFilledRect;

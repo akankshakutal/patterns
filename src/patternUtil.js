@@ -45,10 +45,6 @@ const hollowLineGenerator = createLineGenerator("*"," ","*");
 const upperAngledLineGenerator = createLineGenerator("/"," ","\\");
 const lowerAngledLineGenerator = createLineGenerator("\\"," ","/");
 
-const createFilledRect = function (width,height) {
-  let rectangle = new Array(height).fill(starLineGenerator(width));
-  return rectangle;
-}
 const isZero = function(width,height) {
   return width == 0 || height == 0;
 }
@@ -164,7 +160,6 @@ exports.createLeftTriangle = createLeftTriangle;
 exports.createTriangle = createTriangle;
 exports.createEmptyRect = createEmptyRect;
 exports.createAlternateRect = createAlternateRect;
-exports.createFilledRect = createFilledRect;
 exports.createLineGenerator = createLineGenerator;
 exports.rightJustifyLine = rightJustifyLine;
 exports.centerJustifyLine = centerJustifyLine;
