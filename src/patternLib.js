@@ -10,7 +10,6 @@ const { starLineGenerator,
   createTriangle,
   generateUpperPartOfDiamond,
   generateLowerPartOfDiamond,
-  createHollowDiamond,
   createAngledDiamond,
   generateMirrorPattern,
   generateFlipedPattern } = require('./patternUtil.js');
@@ -64,6 +63,14 @@ const createFilledDiamond = function(height) {
   diamond = diamond.concat(generateUpperPartOfDiamond("*",height,starLineGenerator));
   diamond = diamond.concat(starLineGenerator(height));
   diamond = diamond.concat(generateLowerPartOfDiamond("*",height,starLineGenerator));
+  return diamond;
+}
+
+const createHollowDiamond = function(height) {
+  let diamond = [];
+  diamond = diamond.concat(generateUpperPartOfDiamond("*",height,hollowLineGenerator));
+  diamond = diamond.concat(hollowLineGenerator(height));
+  diamond = diamond.concat(generateLowerPartOfDiamond("*",height,hollowLineGenerator));
   return diamond;
 }
 
@@ -168,3 +175,4 @@ exports.createAlternateRect= createAlternateRect;
 exports.createLeftTriangle= createLeftTriangle;
 exports.createRightTriangle= createRightTriangle;
 exports.createFilledDiamond= createFilledDiamond;
+exports.createHollowDiamond= createHollowDiamond;

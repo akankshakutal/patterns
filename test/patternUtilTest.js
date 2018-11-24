@@ -14,7 +14,6 @@ const { repeat,
   createTriangle,
   generateUpperPartOfDiamond,
   generateLowerPartOfDiamond,
-  createHollowDiamond,
   generateMirrorPattern,
   generateFlipedPattern,
   createAngledDiamond } = require('../src/patternUtil.js');
@@ -169,24 +168,6 @@ expectedOutput.push(" ***** ");
 expectedOutput.push("  ***  ");
 expectedOutput.push("   *   ");
 testFunction(generateLowerPartOfDiamond,inputs,expectedOutput);
-
-/*------------------ CreateHollowDiamond function tests --------------*/
-
-inputs = [3];
-expectedOutput = [];
-expectedOutput.push(" * ");
-expectedOutput.push("* *");
-expectedOutput.push(" * ");
-testFunction(createHollowDiamond,inputs,expectedOutput);
-
-inputs = [5];
-expectedOutput =  [];
-expectedOutput.push("  *  ");
-expectedOutput.push(" * * ");
-expectedOutput.push("*   *");
-expectedOutput.push(" * * ");
-expectedOutput.push("  *  ");
-testFunction(createHollowDiamond,inputs,expectedOutput);
 
 /*------------------ CreateAngledDiamond function tests --------------*/
 

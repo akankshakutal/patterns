@@ -81,14 +81,6 @@ const generateLowerPartOfDiamond = function(tipChar,height,lineGenerator) {
   return lowerPart;
 }
 
-const createHollowDiamond = function(height) {
-  let diamond = [];
-  diamond = diamond.concat(generateUpperPartOfDiamond("*",height,hollowLineGenerator));
-  diamond = diamond.concat(hollowLineGenerator(height));
-  diamond = diamond.concat(generateLowerPartOfDiamond("*",height,hollowLineGenerator));
-  return diamond;
-}
-
 const createAngledDiamond = function(height){
   let diamond = [];
   diamond = diamond.concat(generateUpperPartOfDiamond("*",height,upperAngledLineGenerator));
@@ -115,7 +107,6 @@ exports.generateMirrorPattern = generateMirrorPattern;
 exports.createAngledDiamond = createAngledDiamond;
 exports.repeat = repeat;
 exports.isZero = isZero;
-exports.createHollowDiamond = createHollowDiamond;
 exports.generateLowerPartOfDiamond = generateLowerPartOfDiamond;
 exports.generateUpperPartOfDiamond = generateUpperPartOfDiamond;
 exports.createTriangle = createTriangle;
