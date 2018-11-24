@@ -122,32 +122,6 @@ inputs = ["#"," ","#"];
 expectedOutput = "#   #";
 testCreateLineGenerator(inputs,expectedOutput);
 
-/*------------------ createAlternateRect function tests --------------*/
-
-inputs = [0,0];
-expectedOutput = [];
-testFunction(createAlternateRect,inputs,expectedOutput);
-
-inputs = [1,1];
-expectedOutput = [];
-expectedOutput.push("*");
-testFunction(createAlternateRect,inputs,expectedOutput);
-
-inputs = [2,2];
-expectedOutput = [];
-expectedOutput.push("**");
-expectedOutput.push("--");
-testFunction(createAlternateRect,inputs,expectedOutput);
-
-inputs = [5,5];
-expectedOutput = [];
-expectedOutput.push("*****");
-expectedOutput.push("-----");
-expectedOutput.push("*****");
-expectedOutput.push("-----");
-expectedOutput.push("*****");
-testFunction(createAlternateRect,inputs,expectedOutput);
-
 /*------------------ CreateTriangle function tests --------------*/
 
 inputs = [0,leftJustifyLine,starLineGenerator];

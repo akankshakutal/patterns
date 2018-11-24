@@ -49,15 +49,6 @@ const isZero = function(width,height) {
   return width == 0 || height == 0;
 }
 
-const createAlternateRect = function(width,height) {
-  let rectangle = [];
-  let lineGenerators = [starLineGenerator,dashLineGenerator];
-  for(let row=0; row<height; row++) {
-    rectangle.push(lineGenerators[row%2](width));
-  }
-  return rectangle;
-}
-
 const createTriangle = function(height,justifier,lineGenerator) {
   let triangle = [];
   for(row=1; row<=height; row++) {
@@ -146,7 +137,6 @@ exports.generateUpperPartOfDiamond = generateUpperPartOfDiamond;
 exports.createRightTriangle = createRightTriangle;
 exports.createLeftTriangle = createLeftTriangle;
 exports.createTriangle = createTriangle;
-exports.createAlternateRect = createAlternateRect;
 exports.createLineGenerator = createLineGenerator;
 exports.rightJustifyLine = rightJustifyLine;
 exports.centerJustifyLine = centerJustifyLine;

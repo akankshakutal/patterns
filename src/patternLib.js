@@ -4,7 +4,6 @@ const { starLineGenerator,
   upperAngledLineGenerator,
   lowerAngledLineGenerator,
   isZero,
-  createAlternateRect,
   createLeftTriangle,
   createRightTriangle,
   createFilledDiamond,
@@ -37,6 +36,15 @@ const createEmptyRect = function (width,height) {
     rectangle.push(hollowLineGenerator(width));
   }
   rectangle.push(starLineGenerator(width));
+  return rectangle;
+}
+
+const createAlternateRect = function(width,height) {
+  let rectangle = [];
+  let lineGenerators = [starLineGenerator,dashLineGenerator];
+  for(let row=0; row<height; row++) {
+    rectangle.push(lineGenerators[row%2](width));
+  }
   return rectangle;
 }
 
@@ -137,3 +145,4 @@ exports.generateTriangle = generateTriangle;
 exports.generateRectangle = generateRectangle;
 exports.createFilledRect = createFilledRect;
 exports.createEmptyRect = createEmptyRect;
+exports.createAlternateRect= createAlternateRect;
