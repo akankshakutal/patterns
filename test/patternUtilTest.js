@@ -14,9 +14,6 @@ const { repeat,
   createTriangle,
   generateUpperPartOfDiamond,
   generateLowerPartOfDiamond,
-  generateUpperPartOfAngledDiamond,
-  generateLowerPartOfAngledDiamond,
-  createFilledDiamond,
   createHollowDiamond,
   generateMirrorPattern,
   generateFlipedPattern,
@@ -172,24 +169,6 @@ expectedOutput.push(" ***** ");
 expectedOutput.push("  ***  ");
 expectedOutput.push("   *   ");
 testFunction(generateLowerPartOfDiamond,inputs,expectedOutput);
-
-/*------------------ CreateFilledDiamond function tests --------------*/
-
-inputs = [3];
-expectedOutput = [];
-expectedOutput.push(" * ");
-expectedOutput.push("***");
-expectedOutput.push(" * ");
-testFunction(createFilledDiamond,inputs,expectedOutput);
-
-inputs = [5];
-expectedOutput = [];
-expectedOutput.push("  *  ");
-expectedOutput.push(" *** ");
-expectedOutput.push("*****")
-expectedOutput.push(" *** ");
-expectedOutput.push("  *  ");
-testFunction(createFilledDiamond,inputs,expectedOutput);
 
 /*------------------ CreateHollowDiamond function tests --------------*/
 

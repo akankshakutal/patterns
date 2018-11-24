@@ -134,6 +134,22 @@ expectedOutput.push(" ****");
 expectedOutput.push("*****");
 testFunction(lib.createRightTriangle,inputs,expectedOutput);
 
+inputs = [3];
+expectedOutput = [];
+expectedOutput.push(" * ");
+expectedOutput.push("***");
+expectedOutput.push(" * ");
+testFunction(lib.createFilledDiamond,inputs,expectedOutput);
+
+inputs = [5];
+expectedOutput = [];
+expectedOutput.push("  *  ");
+expectedOutput.push(" *** ");
+expectedOutput.push("*****")
+expectedOutput.push(" *** ");
+expectedOutput.push("  *  ");
+testFunction(lib.createFilledDiamond,inputs,expectedOutput);
+
 expectedOutput  = ["**","**"];
 inputs = {type : "filled",height : 2, width : 2};
 testFunction(lib.generateRectangle,inputs,expectedOutput);

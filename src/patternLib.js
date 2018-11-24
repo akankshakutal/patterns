@@ -8,7 +8,8 @@ const { starLineGenerator,
   centerJustifyLine,
   isZero,
   createTriangle,
-  createFilledDiamond,
+  generateUpperPartOfDiamond,
+  generateLowerPartOfDiamond,
   createHollowDiamond,
   createAngledDiamond,
   generateMirrorPattern,
@@ -56,6 +57,14 @@ const createLeftTriangle = function (height) {
 
 const createRightTriangle = function (height) {
   return createTriangle(height,rightJustifyLine,starLineGenerator);
+}
+
+const createFilledDiamond = function(height) {
+  let diamond = [];
+  diamond = diamond.concat(generateUpperPartOfDiamond("*",height,starLineGenerator));
+  diamond = diamond.concat(starLineGenerator(height));
+  diamond = diamond.concat(generateLowerPartOfDiamond("*",height,starLineGenerator));
+  return diamond;
 }
 
 const generateRectangle = function(parameters) {
@@ -158,3 +167,4 @@ exports.createEmptyRect = createEmptyRect;
 exports.createAlternateRect= createAlternateRect;
 exports.createLeftTriangle= createLeftTriangle;
 exports.createRightTriangle= createRightTriangle;
+exports.createFilledDiamond= createFilledDiamond;
