@@ -15,8 +15,7 @@ const { repeat,
   generateUpperPartOfDiamond,
   generateLowerPartOfDiamond,
   generateMirrorPattern,
-  generateFlipedPattern,
-  createAngledDiamond } = require('../src/patternUtil.js');
+  generateFlipedPattern } = require('../src/patternUtil.js');
 
 /*------------------ ExtractParameters function tests --------------*/
 
@@ -168,28 +167,6 @@ expectedOutput.push(" ***** ");
 expectedOutput.push("  ***  ");
 expectedOutput.push("   *   ");
 testFunction(generateLowerPartOfDiamond,inputs,expectedOutput);
-
-/*------------------ CreateAngledDiamond function tests --------------*/
-
-inputs = [5];
-expectedOutput = [];
-expectedOutput.push("  *  ");
-expectedOutput.push(" / \\ ");
-expectedOutput.push("*   *");
-expectedOutput.push(" \\ / ");
-expectedOutput.push("  *  ");
-testFunction(createAngledDiamond,inputs,expectedOutput);
-
-inputs = [7];
-expectedOutput = [];
-expectedOutput.push("   *   ");
-expectedOutput.push("  / \\  ");
-expectedOutput.push(" /   \\ ");
-expectedOutput.push("*     *");
-expectedOutput.push(" \\   / ");
-expectedOutput.push("  \\ /  ");
-expectedOutput.push("   *   ");
-testFunction(createAngledDiamond,inputs,expectedOutput);
 
 /*------------------ generateMirrorPattern function tests --------------*/
 
