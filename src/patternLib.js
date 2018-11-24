@@ -3,8 +3,11 @@ const { starLineGenerator,
   dashLineGenerator,
   upperAngledLineGenerator,
   lowerAngledLineGenerator,
+  leftJustifyLine,
+  rightJustifyLine,
+  centerJustifyLine,
   isZero,
-  createLeftTriangle,
+  createTriangle,
   createRightTriangle,
   createFilledDiamond,
   createHollowDiamond,
@@ -46,6 +49,10 @@ const createAlternateRect = function(width,height) {
     rectangle.push(lineGenerators[row%2](width));
   }
   return rectangle;
+}
+
+const createLeftTriangle = function (height) {
+  return createTriangle(height,leftJustifyLine,starLineGenerator);
 }
 
 const generateRectangle = function(parameters) {
@@ -146,3 +153,4 @@ exports.generateRectangle = generateRectangle;
 exports.createFilledRect = createFilledRect;
 exports.createEmptyRect = createEmptyRect;
 exports.createAlternateRect= createAlternateRect;
+exports.createLeftTriangle= createLeftTriangle;

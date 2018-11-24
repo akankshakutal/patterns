@@ -58,10 +58,6 @@ const createTriangle = function(height,justifier,lineGenerator) {
   return triangle;
 }
 
-const createLeftTriangle = function (height) {
-  return createTriangle(height,leftJustifyLine,starLineGenerator);
-}
-
 const createRightTriangle = function (height) {
   return createTriangle(height,rightJustifyLine,starLineGenerator);
 }
@@ -135,7 +131,6 @@ exports.createFilledDiamond = createFilledDiamond;
 exports.generateLowerPartOfDiamond = generateLowerPartOfDiamond;
 exports.generateUpperPartOfDiamond = generateUpperPartOfDiamond;
 exports.createRightTriangle = createRightTriangle;
-exports.createLeftTriangle = createLeftTriangle;
 exports.createTriangle = createTriangle;
 exports.createLineGenerator = createLineGenerator;
 exports.rightJustifyLine = rightJustifyLine;
