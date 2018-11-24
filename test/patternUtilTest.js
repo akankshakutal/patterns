@@ -12,7 +12,6 @@ const { repeat,
   lowerAngledLineGenerator,
   createLineGenerator,
   createTriangle,
-  createRightTriangle,
   generateUpperPartOfDiamond,
   generateLowerPartOfDiamond,
   generateUpperPartOfAngledDiamond,
@@ -143,33 +142,6 @@ expectedOutput.push("---  ");
 expectedOutput.push("---- ");
 expectedOutput.push("-----");
 testFunction(createTriangle,inputs,expectedOutput);
-
-
-/*------------------ CreateRightTriangle function tests --------------*/
-
-inputs = [0];
-expectedOutput = [];
-testFunction(createRightTriangle,inputs,expectedOutput);
-
-inputs = [1];
-expectedOutput = [];
-expectedOutput.push("*");
-testFunction(createRightTriangle,inputs,expectedOutput);
-
-inputs = [2];
-expectedOutput = [];
-expectedOutput.push(" *");
-expectedOutput.push("**");
-testFunction(createRightTriangle,inputs,expectedOutput);
-
-inputs = [5];
-expectedOutput = [];
-expectedOutput.push("    *");
-expectedOutput.push("   **");
-expectedOutput.push("  ***");
-expectedOutput.push(" ****");
-expectedOutput.push("*****");
-testFunction(createRightTriangle,inputs,expectedOutput);
 
 /*------------------ generateUpperPartOfDiamond function tests --------------*/
 

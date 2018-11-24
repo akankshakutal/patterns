@@ -110,6 +110,30 @@ expectedOutput.push("**** ");
 expectedOutput.push("*****");
 testCreateFunction(lib.createLeftTriangle,inputs,expectedOutput);
 
+inputs = [0];
+expectedOutput = [];
+testFunction(lib.createRightTriangle,inputs,expectedOutput);
+
+inputs = [1];
+expectedOutput = [];
+expectedOutput.push("*");
+testFunction(lib.createRightTriangle,inputs,expectedOutput);
+
+inputs = [2];
+expectedOutput = [];
+expectedOutput.push(" *");
+expectedOutput.push("**");
+testFunction(lib.createRightTriangle,inputs,expectedOutput);
+
+inputs = [5];
+expectedOutput = [];
+expectedOutput.push("    *");
+expectedOutput.push("   **");
+expectedOutput.push("  ***");
+expectedOutput.push(" ****");
+expectedOutput.push("*****");
+testFunction(lib.createRightTriangle,inputs,expectedOutput);
+
 expectedOutput  = ["**","**"];
 inputs = {type : "filled",height : 2, width : 2};
 testFunction(lib.generateRectangle,inputs,expectedOutput);
