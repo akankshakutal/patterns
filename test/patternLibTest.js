@@ -186,6 +186,22 @@ expectedOutput.push("  \\ /  ");
 expectedOutput.push("   *   ");
 testCreateFunction(lib.createAngledDiamond,inputs,expectedOutput);
 
+inputs = [[]];
+expectedOutput = [];
+testCreateFunction(lib.generateMirrorPattern,inputs,expectedOutput);
+
+inputs = [["*"]];
+expectedOutput = [];
+expectedOutput.push("*");
+testCreateFunction(lib.generateMirrorPattern,inputs,expectedOutput);
+
+inputs = [["***","**","*"]];
+expectedOutput = [];
+expectedOutput.push("*");
+expectedOutput.push("**");
+expectedOutput.push("***");
+testCreateFunction(lib.generateMirrorPattern,inputs,expectedOutput);
+
 expectedOutput  = ["**","**"];
 inputs = {type : "filled",height : 2, width : 2};
 testFunction(lib.generateRectangle,inputs,expectedOutput);

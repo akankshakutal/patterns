@@ -10,7 +10,6 @@ const { starLineGenerator,
   createTriangle,
   generateUpperPartOfDiamond,
   generateLowerPartOfDiamond,
-  generateMirrorPattern,
   generateFlipedPattern } = require('./patternUtil.js');
 
 const zipArrays = function(dataSet1,dataSet2) {
@@ -79,6 +78,10 @@ const createAngledDiamond = function(height){
   diamond = diamond.concat(hollowLineGenerator(height));
   diamond = diamond.concat(generateLowerPartOfDiamond("*",height,lowerAngledLineGenerator));
   return diamond;
+}
+
+const generateMirrorPattern= function (source) {
+  return source.slice().reverse();
 }
 
 const generateRectangle = function(parameters) {
@@ -184,3 +187,4 @@ exports.createRightTriangle= createRightTriangle;
 exports.createFilledDiamond= createFilledDiamond;
 exports.createHollowDiamond= createHollowDiamond;
 exports.createAngledDiamond= createAngledDiamond;
+exports.generateMirrorPattern = generateMirrorPattern;

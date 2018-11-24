@@ -14,7 +14,6 @@ const { repeat,
   createTriangle,
   generateUpperPartOfDiamond,
   generateLowerPartOfDiamond,
-  generateMirrorPattern,
   generateFlipedPattern } = require('../src/patternUtil.js');
 
 /*------------------ ExtractParameters function tests --------------*/
@@ -168,23 +167,6 @@ expectedOutput.push("  ***  ");
 expectedOutput.push("   *   ");
 testFunction(generateLowerPartOfDiamond,inputs,expectedOutput);
 
-/*------------------ generateMirrorPattern function tests --------------*/
-
-inputs = [[]];
-expectedOutput = [];
-testFunction(generateMirrorPattern,inputs,expectedOutput);
-
-inputs = [["*"]];
-expectedOutput = [];
-expectedOutput.push("*");
-testFunction(generateMirrorPattern,inputs,expectedOutput);
-
-inputs = [["***","**","*"]];
-expectedOutput = [];
-expectedOutput.push("*");
-expectedOutput.push("**");
-expectedOutput.push("***");
-testFunction(generateMirrorPattern,inputs,expectedOutput);
 
 /*------------------ generateFlipedPattern function tests --------------*/
 

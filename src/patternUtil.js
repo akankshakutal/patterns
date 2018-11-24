@@ -81,10 +81,6 @@ const generateLowerPartOfDiamond = function(tipChar,height,lineGenerator) {
   return lowerPart;
 }
 
-const generateMirrorPattern= function (source) {
-  return source.slice().reverse();
-}
-
 const generateFlipedPattern = function (source) {
   let result = [];
   for (let element of source) {
@@ -95,7 +91,6 @@ const generateFlipedPattern = function (source) {
 }
 
 exports.generateFlipedPattern = generateFlipedPattern;
-exports.generateMirrorPattern = generateMirrorPattern;
 exports.repeat = repeat;
 exports.isZero = isZero;
 exports.generateLowerPartOfDiamond = generateLowerPartOfDiamond;
